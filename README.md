@@ -54,7 +54,7 @@
 - テーブル定義書
   - <https://docs.google.com/spreadsheets/d/16mPCZwuGosj6GSAHg93ikChRX6hYwoCqoVS6MB9PJy8/edit?usp=sharing>
 - アプリケーション詳細設計
-<>
+  - <https://docs.google.com/spreadsheets/d/1XKbN0mWS29CIExBCh9mRFQvXln_7yndpVOBbhRzDbVk/edit?usp=sharing>
 
 ## 機能一覧
 <https://docs.google.com/spreadsheets/d/1-0mtUZN79BPEKzAuJ29AO5ddPijhx2u2vmFLlf6NNFA/edit#gid=0>
