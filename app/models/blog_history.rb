@@ -1,0 +1,2 @@
+class BlogHistory < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+module Users::ItemHistorysHelper
+end
