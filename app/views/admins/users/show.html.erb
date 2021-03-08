@@ -1,0 +1,23 @@
+<h2>〇〇さんの会員情報</h2>
+
+会員ID：<%= @user.id %><br>
+
+氏名：<%= @user.family_name %><%= @user.name %><br>
+
+フリガナ：<%= @user.family_name_kana %><%= @user.name_kana %><br>
+
+郵便番号：〒<%= @user.postal_code %><br>
+
+住所：<%= @user.prefecture_name %><%= @user.city %><br>
+
+電話番号：<%= @user.phone_number %><br>
+
+メールアドレス：<%= @user.email %><br>
+
+会員ステータス
+<% if @user.is_deleted == false %>
+  有効
+<% else %>
+  退会
+<% end %>
+

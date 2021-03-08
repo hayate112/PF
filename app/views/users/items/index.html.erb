@@ -1,0 +1,24 @@
+<h2>商品一覧</h2>
+
+<div>
+<% @items.each do |item| %>
+  <%= link_to item_path(item.id) do %>
+   <div>
+     <%= item.name %>
+   </div>
+   <div>
+     <%= item.genre.name %>
+   </div>
+   <div>
+     <%= item.price %>
+   </div>
+   <div>
+     <% if item.sale_status == true %>
+       在庫あり
+     <% else %>
+       在庫なし
+     <% end %>
+   </div>
+  <% end %>
+<% end %>
+</div>

@@ -4,6 +4,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :email, uniqueness: true
+  validates :family_name, presence: true
+  validates :name, presence: true
+  validates :family_name_kana, presence: true
+  validates :name_kana, presence: true
+  validates :phone_number, presence: true
+  validates :postal_code, presence: true
+
+  has_many :receivers, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_many :cart_items
+
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
+
   include JpPrefecture
   jp_prefecture :prefectures
 
@@ -14,5 +30,7 @@ class User < ApplicationRecord
   def prefecture_name=(prefecture_name)
     self.prefectures = JpPrefecture::Prefecture.find(name: prefectures).code
   end
+
+
 
 end

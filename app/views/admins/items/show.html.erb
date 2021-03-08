@@ -1,0 +1,20 @@
+<h2>商品詳細</h2>
+
+商品名<%= @item.name %><br>
+
+商品説明<%= @item.description %><br>
+
+ジャンル<%= @item.genre.name %><br>
+
+税抜価格（税込価格）<%= @item.price %><%= (@item.price * 1.08).round %><br>
+
+在庫<%= @item.count %><br>
+
+販売ステータス
+<% if @item.sale_status == true %>
+  在庫あり
+<% else %>
+  在庫なし
+<% end %>
+
+<%= link_to '編集する', edit_admins_item_path %>

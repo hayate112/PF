@@ -1,0 +1,13 @@
+<h2>ブログ一覧</h2>
+
+<%= link_to '投稿する', new_admins_blog_path %>
+
+<% @blogs.each do |blog| %>
+  <%= link_to admins_blog_path(blog.id) do %>
+    <div>
+      <div><%= blog.title %></div>
+      <div><%= blog.body %></div>
+      <div><%= blog.genre.name %></div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,48 @@
+<h2>ジャンル一覧・追加</h2>
+
+<%= form_with(model:[:admins, @genre], local:true) do |f| %>
+  <div class='field'>
+    <%= f.label :genre_status, '対象' %>
+    <div>
+      <%= f.radio_button :genre_status, true %>
+      <%= f.label :genre_status, 'ブログ', value:true %>
+    </div>
+    <div>
+      <%= f.radio_button :genre_status, false %>
+      <%= f.label :genre_status, '商品', value:false%>
+    </div>
+  </div>
+  <div class='field'>
+    <%= f.label :name, 'ジャンル名' %>
+    <%= f.text_field :name %>
+  </div>
+  <div class='field'>
+    <%= f.submit '新規追加' %>
+  </div>
+<% end %>
+
+<table>
+  <tr>
+    <th>ブログ用ジャンル</th>
+    <th></th>
+  </tr>
+  <% @genre_blog.each do |genre| %>
+  <tr>
+    <td><%= genre.name %></td>
+    <td><%= link_to '編集', edit_admins_genre_path(genre.id) %></td>
+  </tr>
+  <% end %>
+</table>
+
+<table>
+  <tr>
+    <th>商品用ジャンル</th>
+    <th></th>
+  </tr>
+  <% @genre_item.each do |genre| %>
+  <tr>
+    <td><%= genre.name %></td>
+    <td><%= link_to '編集', edit_admins_genre_path(genre.id) %></td>
+  </tr>
+  <% end %>
+</table>

@@ -1,0 +1,22 @@
+<h2>新規投稿</h2>
+
+<%= form_with(model:[:admins, @blog], local: true) do |f| %>
+  <div class="field">
+    <%= f.label :title, 'タイトル' %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body, '投稿内容' %>
+    <%= f.text_area :body %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :genre_id, 'ジャンル' %>
+    <%= f.collection_select :genre_id, Genre.where(genre_status: true), :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.submit '投稿する' %>
+  </div>
+<% end %>
