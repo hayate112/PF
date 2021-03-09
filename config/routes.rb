@@ -21,10 +21,12 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
-    resources :blogs, only:[:index, :show]
-    resources :comments, only:[:create, :destroy]
-    resources :blog_likes, only:[:create, :destroy]
-    resources :comment_likes, only:[:create, :destroy]
+    resources :blogs, only:[:index, :show] do
+      resource :blog_likes, only:[:create, :destroy]
+      resources :comments, only:[:create, :destroy] do
+        resource :comment_likes, only:[:create, :destroy]
+      end
+    end
     resources :blog_historys, only:[:index]
     resources :items, only:[:index, :show]
     resources :reviews, only:[:create, :destroy]

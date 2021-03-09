@@ -3,8 +3,55 @@
 タイトル：<%= @blog.title %><br>
 投稿内容：<%= @blog.body %><br>
 ジャンル：<%= @blog.genre.name %><br>
-投稿日時：<%= @blog.created_at %>
+投稿日時：<%= @blog.created_at %><br>
+<% if @blog.blog_liked_by?(current_user) %>
+  <p>
+    <%= link_to blog_blog_likes_path(@blog), method: :delete do %>
+      ♥<%= @blog.blog_likes.count %> いいね
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to blog_blog_likes_path(@blog), method: :post do %>
+      ♡<%= @blog.blog_likes.count %> いいね
+    <% end %>
+  </p>
+<% end %>
 
 <h4>コメント一覧</h4>
 
+<div>
+  <p>コメント件数：<%= @blog.comments.count %></p>
+  <% @blog.comments.each do |comment| %>
+    <%= comment.user.nickname %><br>
+    <%= comment.comment %><br>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <% if @blog.blog_liked_by?(current_user) %>
+      <p>
+        <%= link_to blog_blog_likes_path(@blog), method: :delete do %>
+          ♥<%= @blog.blog_likes.count %> いいね
+        <% end %>
+      </p>
+      <% else %>
+      <p>
+        <%= link_to blog_blog_likes_path(@blog), method: :post do %>
+          ♡<%= @blog.blog_likes.count %> いいね
+        <% end %>
+      </p>
+    <% end %>
+    <% if comment.user == current_user %>
+      <div>
+        <%= link_to "削除", blog_comment_path(comment.blog, comment), method: :delete %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
 <h4>コメント入力欄</h4>
+
+<div>
+  <%= form_with(model:[@blog, @comment], local: true) do |f| %>
+    <%= f.text_area :comment, rows:'5',placeholder: "こちらにコメントを書き込んでください" %>
+    <%= f.submit "コメントする" %>
+  <% end %>
+</div>
