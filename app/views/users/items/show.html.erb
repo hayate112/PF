@@ -10,7 +10,22 @@
 
 在庫<%= @item.count %><br>
 
-個数選択ボタン　　カートに入れるボタン<br>
+<% if @item.count == 0 %>
+  在庫がありません。入荷をお待ちください。
+<% elsif user_signed_in? %>
+  <%= form_with(model:[@cart_item], local: true) do |f| %>
+    <div>
+      <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], {include_blank: '個数選択'} %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+    </div>
+    <div>
+      <%= f.submit 'カートに入れる' %>
+    </div>
+  <% end %>
+<% else %>
+  購入するには、ログインが必要です。
+  ログインは、<%= link_to 'こちらへ', user_session_path %>
+<% end %>
 
 総合評価<br>
 

@@ -26,19 +26,19 @@
     <%= comment.user.nickname %><br>
     <%= comment.comment %><br>
     <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <% if @blog.blog_liked_by?(current_user) %>
-      <p>
-        <%= link_to blog_blog_likes_path(@blog), method: :delete do %>
-          ♥<%= @blog.blog_likes.count %> いいね
-        <% end %>
-      </p>
-      <% else %>
-      <p>
-        <%= link_to blog_blog_likes_path(@blog), method: :post do %>
-          ♡<%= @blog.blog_likes.count %> いいね
-        <% end %>
-      </p>
-    <% end %>
+    <!--<% if @blog.blog_liked_by?(current_user) %>-->
+    <!--  <p>-->
+    <!--    <%= link_to blog_blog_likes_path(@blog), method: :delete do %>-->
+    <!--      ♥<%= @blog.blog_likes.count %> いいね-->
+    <!--    <% end %>-->
+    <!--  </p>-->
+    <!--  <% else %>-->
+    <!--  <p>-->
+    <!--    <%= link_to blog_blog_likes_path(@blog), method: :post do %>-->
+    <!--      ♡<%= @blog.blog_likes.count %> いいね-->
+    <!--    <% end %>-->
+    <!--  </p>-->
+    <!--<% end %>-->
     <% if comment.user == current_user %>
       <div>
         <%= link_to "削除", blog_comment_path(comment.blog, comment), method: :delete %>

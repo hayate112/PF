@@ -1,0 +1,51 @@
+<h2>ショッピングカート</h2>
+
+<% if @cart_items.count == 0 %>
+  <h4>...カートには何も入っていません...</h4>
+  <%= link_to '商品を見る', items_path %>
+
+<% else %>
+<%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class:"btn btn-danger" %>
+  <table>
+    <tr>
+      <th></th>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>個数</th>
+      <th></th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+    <% @cart_items.each do |cart| %>
+      <tr>
+        <% @total_price += ((cart.item.price * cart.count) * 1.08).round %>
+        <td></td>
+        <td><%= cart.item.name %></td>
+        <td><%= (cart.item.price * 1.08).round %></td>
+        <%= form_with model: @cart_item, url: cart_item_path(cart.id), local: true, method: :patch do |f| %>
+          <td>
+            <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], include_blank: "#{cart.count}" %>
+          </td>
+          <td>
+            <%= f.submit '変更' %>
+          </td>
+        <% end %>
+        <td><%= ((cart.item.price * cart.count) * 1.08).round %></td>
+        <td><%= link_to '削除する', cart_item_path(cart.id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to '買い物を続ける', items_path %>
+
+  <table>
+    <tr>
+      <th>合計金額</th>
+    </tr>
+    <tr>
+      <td><%= @total_price %></td>
+    </tr>
+  </table>
+
+  <%= link_to '情報入力に進む', information_orders_path %>
+<% end %>

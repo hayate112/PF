@@ -1,0 +1,64 @@
+<h2>注文情報入力</h2>
+
+<%= form_with model: @order, url: confirm_orders_path, local: true do |f| %>
+  <div class="field">
+    <%= f.label :payment, '支払方法' %>
+    <div>
+      <%= f.radio_button :payment, :credit, checked: true %>
+      <%= f.label :payment, 'クレジットカード', value:true %>
+    </div>
+    <div>
+      <%= f.radio_button :payment, :bank %>
+      <%= f.label :payment, '口座振込', value:false%>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :send_to, '支払方法' %>
+    <div>
+      <%= f.radio_button :send_to, :user_address, checked: true %>
+      <%= f.label :send_to, 'ご自身の住所' %>
+      <div>
+        <%= current_user.postal_code %><%= current_user.prefectures %><%= current_user.city %><br>
+        <%= current_user.family_name %><%= current_user.name %>
+      </div>
+    </div>
+    
+    <% if current_user.receivers.present? %>
+      <div>
+        <%= f.radio_button :send_to, :receiver_address %>
+        <%= f.label :send_to, '登録した配送先住所から選択' %>
+        <div>
+          <%= f.select :receiver_id, @receivers %>
+        </div>
+      </div>
+    <% else %>
+      <%= f.radio_button :send_to, :receiver_address, disabled: true %>
+      <%= f.label :send_to, '登録した配送先住所から選択' %><br>
+      登録されている配送先がありません
+    <% end %>
+      
+    <div>
+      <%= f.radio_button :send_to, :new_address %>
+      <%= f.label :send_to, '新しいお届け先' %>
+      <div>
+        <div>
+          <%= f.label :postal_code, '郵便番号（ハイフンなし）' %><br>
+          <%= f.label :prefectures, '都道府県' %><br>
+          <%= f.label :city, '住所' %><br>
+          <%= f.label :name, '宛名' %>
+        </div>
+        <div>
+          <%= f.text_field :postal_code %><br>
+          <%= f.text_field :prefectures %><br>
+          <%= f.text_field :city %><br>
+          <%= f.text_field :name %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <%= f.submit '確認画面へ進む' %>
+  </div>
+<% end %>
