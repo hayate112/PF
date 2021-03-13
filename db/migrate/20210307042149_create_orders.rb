@@ -9,7 +9,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :prefectures
       t.string :city
       t.string :name
-      t.integer :shipping_status
+      t.integer :shipping_status, default: 0
 
       t.timestamps
     end

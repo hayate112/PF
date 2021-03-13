@@ -1,0 +1,11 @@
+<h2>ブログ閲覧履歴</h2>
+
+<% @historys.reverse_each do |history| %>
+  <%= link_to blog_path(history.blog.id) do %>
+    <div>
+      <div><%= history.blog.title %></div>
+      <div><%= history.blog.body %></div>
+      <div><%= history.blog.genre.name %></div>
+    </div>
+  <% end %>
+<% end %>

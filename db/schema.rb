@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_004608) do
 
   create_table "blog_histories", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "item_id"
+    t.integer "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_004608) do
     t.string "prefectures"
     t.string "city"
     t.string "name"
-    t.integer "shipping_status"
+    t.integer "shipping_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

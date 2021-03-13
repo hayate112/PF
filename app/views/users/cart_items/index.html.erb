@@ -24,7 +24,7 @@
         <td><%= (cart.item.price * 1.08).round %></td>
         <%= form_with model: @cart_item, url: cart_item_path(cart.id), local: true, method: :patch do |f| %>
           <td>
-            <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], include_blank: "#{cart.count}" %>
+            <%= f.select :count, [*1..10], include_blank: "#{cart.count}" %>
           </td>
           <td>
             <%= f.submit '変更' %>

@@ -22,15 +22,20 @@ Rails.application.routes.draw do
       end
     end
     resources :blogs, only:[:index, :show] do
+      collection do
+        get 'blog_history'
+      end
       resource :blog_likes, only:[:create, :destroy]
       resources :comments, only:[:create, :destroy] do
         resource :comment_likes, only:[:create, :destroy]
       end
     end
-    resources :blog_historys, only:[:index]
-    resources :items, only:[:index, :show]
-    resources :reviews, only:[:create, :destroy]
-    resources :item_historys, only: [:index]
+    resources :items, only:[:index, :show] do
+      collection do
+        get 'item_history'
+      end
+    end
+    resources :reviews, only:[:new, :create, :destroy]
     resources :cart_items, except:[:new, :show, :edit] do
       collection do
         delete 'destroy_all'

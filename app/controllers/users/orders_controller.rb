@@ -3,9 +3,16 @@ class Users::OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def information
+    if current_user.cart_items.blank?
+      flash.now[:alert] = "商品をカートに入れてください"
+      @cart_items = current_user.cart_items
+      @total_price = @cart_items.sum{|cart_item|cart_item.item.price * 1.1 * cart_item.quantity}
+      render "cart_items/index"
+    end
     @receivers = current_user.receivers.map {|receiver| ["#{receiver.postal_code} #{receiver.prefectures} #{receiver.city} #{receiver.name}", receiver.id]}
   end
 
@@ -18,7 +25,7 @@ class Users::OrdersController < ApplicationController
       @order.postal_code = current_user.postal_code
       @order.prefectures = current_user.prefectures
       @order.city = current_user.city
-      @order.name = current_user.family_name + current_user.first_name
+      @order.name = current_user.family_name + current_user.name
     elsif params[:send_to] == "1" # 登録した配送先住所
       receiver = Receiver.find(params[:receiver_id])
       @order.postal_code = receiver.postal_code
@@ -49,11 +56,13 @@ class Users::OrdersController < ApplicationController
         order_item.tax_included_price = cart_item.item.price * 1.08
         order_item.save
       end
-      current_user.receiver.create(postal_code: session[:postal_code], prefectures: session[:prefectures], city: session[:city], name: session[:name])
-      session[:postal_code] = nil
-      session[:prefectures] = nil
-      session[:city] = nil
-      session[:name] = nil
+      if session[:postal_code].present? && session[:prefectures].present? && session[:city].present? && session[:name].present?
+        current_user.receivers.create(postal_code: session[:postal_code], prefectures: session[:prefectures], city: session[:city], name: session[:name])
+        session[:postal_code] = nil
+        session[:prefectures] = nil
+        session[:city] = nil
+        session[:name] = nil
+      end
       current_user.cart_items.destroy_all
       redirect_to complete_orders_path
     else

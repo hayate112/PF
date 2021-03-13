@@ -1,2 +1,49 @@
 <h2>注文情報確認</h2>
 
+<table>
+  <tr>
+    <th>商品名</th>
+    <th></th>
+    <th>単価（税込）</th>
+    <th>個数</th>
+    <th>小計</th>
+  </tr>
+  <% current_user.cart_items.each do |cart| %>
+    <tr>
+      <td></td>
+      <td><%= cart.item.name %></td>
+      <td><%= (cart.item.price * 1.08).round %></td>
+      <td><%= cart.count %></td>
+      <td><%= ((cart.item.price * cart.count) * 1.08).round %></td>
+    </tr>
+  <% end %>
+</table>
+
+<table>
+  <tr>
+    <th>商品合計</th>
+    <th>送料</th>
+    <th>ご請求金額</th>
+  </tr>
+  <tr>
+    <td><%= @order_item_sum %></td>
+    <td><%= @order.shipping_fee %></td>
+    <td><%= @order.amount %></td>
+  </tr>
+</table>
+
+<div>
+  支払方法
+  <% if @order.payment == 0 %>
+    クレジットカード
+  <% else %>
+    銀行振込
+  <% end %>
+</div>
+<div>
+  お届け先<%= @order.postal_code %><br>
+  <%= @order.prefectures %><%= @order.city %><br>
+  <%= @order.name %>
+</div>
+
+<%= link_to '注文を確定する', orders_path, method: :post %>

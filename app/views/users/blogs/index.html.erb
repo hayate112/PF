@@ -1,5 +1,7 @@
 <h2>ブログ一覧</h2>
 
+<%= link_to '閲覧履歴一覧', blog_history_blogs_path %>
+
 <% @blogs.each do |blog| %>
   <%= link_to blog_path(blog.id) do %>
     <div>

@@ -1,0 +1,24 @@
+<h2>商品閲覧履歴</h2>
+
+<div>
+<% @historys.reverse_each do |history| %>
+  <%= link_to item_path(history.item.id) do %>
+   <div>
+     <%= history.item.name %>
+   </div>
+   <div>
+     <%= history.item.genre.name %>
+   </div>
+   <div>
+     <%= history.item.price %>
+   </div>
+   <div>
+     <% if history.item.sale_status == true %>
+       在庫あり
+     <% else %>
+       在庫なし
+     <% end %>
+   </div>
+  <% end %>
+<% end %>
+</div>

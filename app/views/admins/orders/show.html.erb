@@ -1,0 +1,52 @@
+<h2>注文履歴詳細</h2>
+
+購入者
+<%= link_to admins_user_path(@order.user.id) do %>
+  <%= @order.user.family_name %><%= @order.user.name %><br>
+<% end %>
+注文日時<%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %><br>
+配送先
+〒<%= @order.postal_code %><br>
+<%= @order.prefectures %><%= @order.city %><br>
+<%= @order.name %><br>
+支払方法
+<% if @order.payment == 0 %>
+  クレジットカード
+<% else %>
+  銀行振込
+<% end %><br>
+発送ステータス
+<%= form_with(model:[:admins, @order], local: true) do |f| %>
+  <%= f.select :shipping_status, {'入金待ち': 0, '発送準備中': 1, '発送完了': 2, 'お届け済み': 3}, included_blank: "#{@order.shipping_status}" %>
+  <%= f.submit '更新' %>
+<% end %>
+
+<table>
+  <tr>
+    <th>商品名</th>
+    <th></th>
+    <th>単価（税込）</th>
+    <th>注文個数</th>
+  </tr>
+  <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td></td>
+      <td><%= order_item.item.name %></td>
+      <td><%= (order_item.item.price * 1.08).round %></td>
+      <td><%= order_item.count %></td>
+    </tr>
+  <% end %>
+</table>
+<table>
+  <tr>
+    <th>商品合計</th>
+    <th>送料</th>
+    <th>請求金額（税込）</th>
+  </tr>
+  <tr>
+    <td><%= @order.amount - @order.shipping_fee %></td>
+    <td><%= @order.shipping_fee %></td>
+    <td><%= @order.amount %></td>
+  </tr>
+</table>
+

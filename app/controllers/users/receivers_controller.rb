@@ -6,6 +6,7 @@ class Users::ReceiversController < ApplicationController
 
   def create
     @receiver = Receiver.new(receiver_params)
+    @receiver.user_id = current_user.id
     if @receiver.save
       redirect_to receivers_path
     end

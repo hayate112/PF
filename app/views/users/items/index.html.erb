@@ -1,5 +1,7 @@
 <h2>商品一覧</h2>
 
+<%= link_to '閲覧履歴一覧', item_history_items_path %>
+
 <div>
 <% @items.each do |item| %>
   <%= link_to item_path(item.id) do %>
