@@ -31,11 +31,14 @@ Rails.application.routes.draw do
       end
     end
     resources :items, only:[:index, :show] do
+      member do
+        get 'review'
+      end
       collection do
         get 'item_history'
       end
+      resources :reviews, only:[:index, :create, :destroy]
     end
-    resources :reviews, only:[:new, :create, :destroy]
     resources :cart_items, except:[:new, :show, :edit] do
       collection do
         delete 'destroy_all'

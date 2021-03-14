@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :blog_historys, dependent: :destroy
   has_many :item_historys, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   def active_for_authentication?
     super && (self.is_deleted == false)

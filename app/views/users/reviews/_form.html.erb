@@ -1,0 +1,20 @@
+<% form_with model: review, url: item_reviews_path(item), local: true do |f| %>
+  <div>
+    <span class='fa fa-star-o' id='star'></span>
+    <span class='fa fa-star-o' id='star'></span>
+    <span class='fa fa-star-o' id='star'></span>
+    <span class='fa fa-star-o' id='star'></span>
+    <span class='fa fa-star-o' id='star'></span>
+  </div>
+  <%= f.hidden_field :item_id, value: item.id %>
+  <%= f.hidden_field :rate, id: 'rating-value' %>
+  <div>
+    <%= f.label :title, 'タイトル' %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :body, 'レビュー内容' %>
+    <%= f.text_field :body %>
+  </div>
+  <%= f.submit 'レビューを書く' %>
+<% end %>

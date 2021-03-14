@@ -64,7 +64,7 @@
       <td><%= (order_item.item.price * 1.08).round %></td>
       <td><%= order_item.count %></td>
       <td><%= ((order_item.item.price * order_item.count) * 1.08).round %></td>
-      <td><%= link_to '評価', new_review_path %></td>
+      <td><%= link_to '評価', review_item_path %></td>
     </tr>
   <% end %>
 </table>

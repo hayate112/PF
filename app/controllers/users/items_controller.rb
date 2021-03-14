@@ -20,6 +20,11 @@ class Users::ItemsController < ApplicationController
       histories[0].destroy
     end
   end
+  
+  def review
+    @item = Item.find(params[:id])
+    @review = Review.new
+  end
 
   def item_history
     @historys = ItemHistory.all
