@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       collection do
         get 'item_history'
       end
-      resources :reviews, only:[:index, :create, :destroy]
+      resources :reviews, only:[:create, :destroy]
     end
     resources :cart_items, except:[:new, :show, :edit] do
       collection do

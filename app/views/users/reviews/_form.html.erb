@@ -1,20 +1,31 @@
-<% form_with model: review, url: item_reviews_path(item), local: true do |f| %>
-  <div>
-    <span class='fa fa-star-o' id='star'></span>
-    <span class='fa fa-star-o' id='star'></span>
-    <span class='fa fa-star-o' id='star'></span>
-    <span class='fa fa-star-o' id='star'></span>
-    <span class='fa fa-star-o' id='star'></span>
+
+<%= form_with model: review, url: item_reviews_path(item), local: true do |f| %>
+
+  <div id="star">
+    <%= f.label :rate, '評価' %>
+    <%= f.hidden_field :rate, id: :review_star %>
   </div>
-  <%= f.hidden_field :item_id, value: item.id %>
-  <%= f.hidden_field :rate, id: 'rating-value' %>
+
+  <script>
+    $('#star').raty({
+      size     : 36,
+      starOff  : '<%= asset_path('star-off.png') %>',
+      starOn   : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      scoreName: 'review[rate]',
+      half: true,
+    });
+  </script>
+
   <div>
     <%= f.label :title, 'タイトル' %>
     <%= f.text_field :title %>
   </div>
   <div>
     <%= f.label :body, 'レビュー内容' %>
-    <%= f.text_field :body %>
+    <%= f.text_area :body, rows: "5", placeholder:'レビュー内容を書き込んでください。' %>
   </div>
-  <%= f.submit 'レビューを書く' %>
+    <%= f.submit 'レビューを書く' %>
+  <div>
+  </div>
 <% end %>
