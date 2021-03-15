@@ -1,6 +1,5 @@
 
-<%= form_with model: review, url: item_reviews_path(item), local: true do |f| %>
-
+<%= form_with model: review, url: item_reviews_path(item.id), local: true do |f| %>
   <div id="star">
     <%= f.label :rate, '評価' %>
     <%= f.hidden_field :rate, id: :review_star %>
@@ -25,7 +24,7 @@
     <%= f.label :body, 'レビュー内容' %>
     <%= f.text_area :body, rows: "5", placeholder:'レビュー内容を書き込んでください。' %>
   </div>
-    <%= f.submit 'レビューを書く' %>
   <div>
+    <%= f.submit 'レビューを書く' %>
   </div>
 <% end %>
