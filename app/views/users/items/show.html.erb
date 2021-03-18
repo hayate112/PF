@@ -28,8 +28,34 @@
   ログインは、<%= link_to 'こちらへ', user_session_path %>
 <% end %>
 
-総合評価<br>
+<% if @item.reviews.present? %>
+  総合評価<br>
 
-レビュー一覧<br>
+  レビュー一覧<br>
+  <% @item.reviews.reverse_each do |review| %>
+    <%= review.user.nickname %>
+
+    <div id="star-rate-<%= review.id %>"></div>
+      <script>
+      $('#star-rate-<%= review.id %>').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: <%= review.rate %>,
+      });
+      </script>
+
+    <%= review.title %>
+    <%= review.body %>
+    <% if review.user == current_user %>
+        <div>
+          <%= link_to "削除", item_reviews_path(review.item, review), method: :delete %>
+        </div>
+      <% end %>
+  <% end %>
+<% end %>
 
 

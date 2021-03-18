@@ -8,6 +8,11 @@ class Users::ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    Review.find_by(id: params[:id], item_id: params[:item_id]).destroy
+    redirect_to item_path(params[:item_id])
+  end
+
   private
 
   def review_params
