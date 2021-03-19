@@ -5,7 +5,7 @@ class Admins::BlogsController < ApplicationController
   end
 
   def index
-    @blogs = Blog.all
+    @blogs = Blog.page(params[:page]).per(6)
   end
 
   def show

@@ -1,5 +1,6 @@
 class Users::OrdersController < ApplicationController
   def index
+    @orders = Order.where(user_id: current_user).page(params[:page]).per(10)
   end
 
   def show
