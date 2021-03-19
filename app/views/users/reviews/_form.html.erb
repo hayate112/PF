@@ -25,6 +25,10 @@
     <%= f.text_area :body, rows: "5", placeholder:'レビュー内容を書き込んでください。' %>
   </div>
   <div>
+    <%= f.label :review_images_images, 'レビュー画像' %>
+    <%= f.attachment_field :review_images_images, multiple: true %>
+  </div>
+  <div>
     <%= f.submit 'レビューを書く' %>
   </div>
 <% end %>

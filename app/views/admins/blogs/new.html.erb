@@ -10,7 +10,12 @@
     <%= f.label :body, '投稿内容' %>
     <%= f.text_area :body %>
   </div>
-  
+
+  <div class="field">
+    <%= f.label :blog_images_images, '投稿画像' %>
+    <%= f.attachment_field :blog_images_images, multiple: true %>
+  </div>
+
   <div class="field">
     <%= f.label :genre_id, 'ジャンル' %>
     <%= f.collection_select :genre_id, Genre.where(genre_status: true), :id, :name %>

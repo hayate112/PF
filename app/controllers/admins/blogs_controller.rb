@@ -1,6 +1,7 @@
 class Admins::BlogsController < ApplicationController
   def new
     @blog = Blog.new
+    @blog.blog_images.build
   end
 
   def index
@@ -38,6 +39,6 @@ class Admins::BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :body, :genre_id)
+    params.require(:blog).permit(:title, :body, :genre_id, blog_images_images: [])
   end
 end

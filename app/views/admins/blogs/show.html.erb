@@ -2,8 +2,12 @@
 
 タイトル：<%= @blog.title %><br>
 投稿内容：<%= @blog.body %><br>
+投稿画像：
+<% @blog.blog_images.each do |image| %>
+  <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
+<% end %><br>
 ジャンル：<%= @blog.genre.name %><br>
-投稿日時：<%= @blog.created_at %>
+投稿日時：<%= @blog.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
 
 <h4>コメント一覧</h4>
 

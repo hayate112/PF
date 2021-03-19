@@ -12,6 +12,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :item_images_images, '商品画像' %>
+    <%= f.attachment_field :item_images_images, multiple: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :genre_id, 'ジャンル' %>
     <%= f.collection_select :genre_id, Genre.where(genre_status: false), :id, :name %>
   </div>

@@ -24,6 +24,7 @@ class Users::ItemsController < ApplicationController
   def review
     @item = Item.find(params[:id])
     @review = Review.new
+    @review.review_images.build
   end
 
   def item_history

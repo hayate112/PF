@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_004608) do
+ActiveRecord::Schema.define(version: 2021_03_19_084944) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 2021_03_12_004608) do
   create_table "blog_histories", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "blog_images", force: :cascade do |t|
+    t.integer "blog_id"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,6 +91,13 @@ ActiveRecord::Schema.define(version: 2021_03_12_004608) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "item_images", force: :cascade do |t|
+    t.integer "item_id"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "genre_id"
     t.string "name"
@@ -124,6 +138,13 @@ ActiveRecord::Schema.define(version: 2021_03_12_004608) do
     t.string "prefectures"
     t.string "city"
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "review_images", force: :cascade do |t|
+    t.integer "review_id"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

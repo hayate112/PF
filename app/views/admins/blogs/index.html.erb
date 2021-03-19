@@ -7,6 +7,12 @@
     <div>
       <div><%= blog.title %></div>
       <div><%= blog.body %></div>
+      <div>
+        <% blog.blog_images.first(1).each do |image| %>
+          <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
+        <% end %>
+      </div>
+      </div>
       <div><%= blog.genre.name %></div>
     </div>
   <% end %>
