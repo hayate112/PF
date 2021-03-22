@@ -6,6 +6,7 @@ class Users::BlogsController < ApplicationController
   def show
     @blog = Blog.find(params[:id])
     @comment = Comment.new
+    @comments = @blog.comments.page(params[:page]).per(5)
     new_history = @blog.blog_historys.new
     new_history.user_id = current_user.id
     if current_user.blog_historys.exists?(blog_id: "#{params[:id]}")

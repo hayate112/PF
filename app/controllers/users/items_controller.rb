@@ -6,6 +6,7 @@ class Users::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
+    @reviews = @item.reviews.page(params[:page]).per(5)
     new_history = @item.item_historys.new
     new_history.user_id = current_user.id
     if current_user.item_historys.exists?(item_id: "#{params[:id]}")

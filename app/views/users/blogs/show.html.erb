@@ -25,24 +25,11 @@
 <h4>コメント一覧</h4>
 
 <div>
-  <p>コメント件数：<%= @blog.comments.count %></p>
-  <% @blog.comments.each do |comment| %>
-    <%= comment.user.nickname %><br>
-    <%= comment.comment %><br>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <% if comment.user == current_user %>
-      <div>
-        <%= link_to "削除", blog_comment_path(comment.blog, comment), method: :delete %>
-      </div>
-    <% end %>
-  <% end %>
+  <%= render 'users/comments/index', comments: @comments %>
 </div>
 
 <h4>コメント入力欄</h4>
 
 <div>
-  <%= form_with(model:[@blog, @comment], local: true) do |f| %>
-    <%= f.text_area :comment, rows:'5',placeholder: "こちらにコメントを書き込んでください" %>
-    <%= f.submit "コメントする" %>
-  <% end %>
+  <%= render 'users/comments/form', comment: @comment, blog: @blog %>
 </div>

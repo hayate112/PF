@@ -1,5 +1,5 @@
 レビュー一覧<br>
-  <% @item.reviews.reverse_each do |review| %>
+  <% @reviews.reverse_each do |review| %>
     <%= review.user.nickname %>
 
     <div id="star-rate-<%= review.id %>"></div>
@@ -26,4 +26,4 @@
       </div>
     <% end %>
   <% end %>
-  <%= paginate @item %>
+  <%= paginate @reviews %>
