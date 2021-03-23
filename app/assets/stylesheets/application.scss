@@ -1,0 +1,119 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+header {
+  width: 100%;
+  display: flex;
+  background-color: gray;
+}
+
+.main {
+  width: 20%;
+  height: 80px;
+  text-align: center;
+  display: inline;
+
+  &__icon {
+    width: 40%;
+    height: 50px;
+    line-height: 50px;
+    margin: 13px 30%;
+    font-size: 30px;
+    border: 2px solid gray;
+    background-color: #fff;
+    .EDITlink {
+      text-decoration: none;
+    }
+  }
+}
+
+.nav {
+  width: 80%;
+  height: 80px;
+
+  &__box {
+    display: flex;
+    justify-content: flex-end;
+    text-align: center;
+  }
+
+  &__user {
+    height: 40px;
+    margin: auto;
+    line-height: 40px;
+    font-size: 15px;
+    color: blue;
+
+    &--red {
+      margin: auto;
+      color: red;
+    }
+  }
+
+  &__list {
+    width: 10%;
+    height: 40px;
+    margin: 0 10px;
+    line-height: 40px;
+    font-size: 15px;
+    border: 2px solid gray;
+    border-radius: 0.5em;
+    background-color: #fff;
+    .EDITlink {
+      text-decoration: none;
+    }
+  }
+}
+
+
+
+.search {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3px;
+
+  input[type="text"] {
+        width: 300px;
+        height: 25px;
+  }
+
+  input[type="select"] {
+        width: 50px;
+        height: 25px;
+  }
+
+  input[type="submit"] {
+        width: 100px;
+        height: 25px;
+        display: inline-block;
+        border-radius: 9%;
+        font-size: 13pt;
+        text-align: center;
+        cursor: pointer;
+        background: #007fff;
+        color: #ffffff;
+        line-height: 1em;
+        transition: .3s;
+        border: 2px solid #007fff;
+  }
+
+  input[type="submit"]:hover {
+    color         : #007fff;
+    background    : #ffffff;
+  }
+
+}
+

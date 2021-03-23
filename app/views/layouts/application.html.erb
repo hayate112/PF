@@ -14,49 +14,55 @@
 
   <body>
     <header>
-      <div>
-        <%= link_to 'Ålice', root_path %>
+      <div class="main">
+        <div class="main__icon"><%= link_to 'Ålice', root_path, class: 'EDITlink' %></div>
       </div>
-      <div>
-        <ul>
-        <% if user_signed_in? %>
-          <div>ようこそ、<%= current_user.family_name %> <%= current_user.name %> さん  </div>
-          <li><%= link_to 'マイページ', users_path %></li>
-          <li><%= link_to 'ブログ一覧', blogs_path %></li>
-          <li><%= link_to '商品一覧', items_path %></li>
-          <li><%= link_to 'カート', cart_items_path %></li>
-          <li><%= link_to 'ログアウト', destroy_user_session_path(logout: 0), method: :delete %></li>
-          <div>
-            <%= form_with url: searchs_path, method: :get, local: true do |f| %>
-              <%= f.text_field :content %>
-              <%= f.select 'model', options_for_select({ "商品" => "Item", "ブログ" => "Blog" }) %>
-              <%= f.submit :検索 %>
-            <% end %>
-          </div>
-        <% elsif admin_signed_in? %>
-          <div>管理者としてログイン中</div>
-          <li><%= link_to 'ブログ一覧', admins_blogs_path %></li>
-          <li><%= link_to '会員一覧', admins_users_path %></li>
-          <li><%= link_to '注文履歴一覧', admins_orders_path %></li>
-          <li><%= link_to '商品一覧', admins_items_path %></li>
-          <li><%= link_to 'ジャンル一覧', admins_genres_path %></li>
-          <li><%= link_to 'ログアウト', destroy_admin_session_path(logout: 1), method: :delete %></li>
-          <div>
-            <%= form_with url: admins_searchs_path, method: :get, local: true do |f| %>
-              <%= f.text_field :content %>
-              <%= f.select 'model', options_for_select({ "会員" => "User", "商品" => "Item", "ブログ" => "Blog" }) %>
-              <%= f.submit :検索 %>
-            <% end %>
-          </div>
-        <% else %>
-          <li><%= link_to 'About', about_path %></li>
-          <li><%= link_to 'ブログ一覧', blogs_path %></li>
-          <li><%= link_to '商品一覧', items_path %></li>
-          <li><%= link_to '新規登録', new_user_registration_path %></li>
-          <li><%= link_to 'ログイン', new_user_session_path %></li>
-          <li><%= link_to '管理者ログイン', new_admin_session_path %></li>
-        <% end %>
-        </ul>
+      <div class="nav">
+        <div class="nav__box">
+          <% if user_signed_in? %>
+            <div class="nav__user">ようこそ、<%= current_user.family_name %> <%= current_user.name %> さん  </div>
+            <div class="nav__list"><%= link_to 'マイページ', users_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to 'ブログ一覧', blogs_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to '商品一覧', items_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to 'カート', cart_items_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to 'ログアウト', destroy_user_session_path(logout: 0), method: :delete, class: 'EDITlink' %></div>
+          <% elsif admin_signed_in? %>
+            <div class="nav__user--red">管理者としてログイン中</div>
+            <div class="nav__list"><%= link_to 'ブログ一覧', admins_blogs_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to '会員一覧', admins_users_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to '注文履歴一覧', admins_orders_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to '商品一覧', admins_items_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to 'ジャンル一覧', admins_genres_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to 'ログアウト', destroy_admin_session_path(logout: 1), method: :delete, class: 'EDITlink' %></div>
+          <% else %>
+            <div class="nav__list"><%= link_to 'About', about_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to 'ブログ一覧', blogs_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to '商品一覧', items_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to '新規登録', new_user_registration_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to 'ログイン', new_user_session_path, class: 'EDITlink' %></div>
+            <div class="nav__list"><%= link_to '管理者ログイン', new_admin_session_path, class: 'EDITlink' %></div>
+          <% end %>
+        </div>
+        <div class="search">
+          <% if user_signed_in? %>
+            <div>
+              <%= form_with url: searchs_path, method: :get, local: true do |f| %>
+                <%= f.text_field :content %>
+                <%= f.select 'model', options_for_select({ "商品" => "Item", "ブログ" => "Blog" }) %>
+                <%= f.submit :検索 %>
+              <% end %>
+            </div>
+          <% elsif admin_signed_in? %>
+            <div>
+              <%= form_with url: admins_searchs_path, method: :get, local: true do |f| %>
+                <%= f.text_field :content %>
+                <%= f.select 'model', options_for_select({ "会員" => "User", "商品" => "Item", "ブログ" => "Blog" }) %>
+                <%= f.submit :検索 %>
+              <% end %>
+            </div>
+          <% else %>
+          <% end %>
+        </div>
       </div>
     </header>
     <div>
