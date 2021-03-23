@@ -1,3 +1,20 @@
+総合評価<br>
+
+<div id="average-rate"></div>
+      <script>
+      $('#average-rate').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: <%= @average_review %>,
+      });
+      </script>
+
+<%= @average_review %>点<br>
+
 レビュー一覧<br>
   <% @reviews.reverse_each do |review| %>
     <%= review.user.nickname %>
@@ -14,6 +31,7 @@
         score: <%= review.rate %>,
       });
       </script>
+    <%= review.rate %>点<br>
 
     <%= review.title %><br>
     <%= review.body %>

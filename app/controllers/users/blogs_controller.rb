@@ -1,6 +1,7 @@
 class Users::BlogsController < ApplicationController
   def index
     @blogs = Blog.page(params[:page]).per(6)
+    @genres = Genre.where(genre_status: true)
   end
 
   def show
@@ -24,5 +25,35 @@ class Users::BlogsController < ApplicationController
 
   def blog_history
     @historys = BlogHistory.all
+  end
+
+  def blog_search
+    selection = params[:keyword]
+    @blogs = Blog.sort(selection)
+    @blogs = Kaminari.paginate_array(@blogs).page(params[:page]).per(6)
+    @genres = Genre.where(genre_status: true)
+    render 'users/blogs/index'
+  end
+
+  def blog_genre_search
+    @value = params["search"]["value"]
+    @how = params["search"]["how"]
+    @blogs = search_for(@how, @value)
+    @blogs = Kaminari.paginate_array(@blogs).page(params[:page]).per(6)
+    @genres = Genre.where(genre_status: true)
+    render 'users/blogs/index'
+  end
+
+  private
+
+  def match(value)
+    Blog.where(genre_id: value)
+  end
+
+  def search_for(how, value)
+    case how
+    when 'match'
+      match(value)
+    end
   end
 end

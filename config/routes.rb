@@ -24,11 +24,11 @@ Rails.application.routes.draw do
     resources :blogs, only:[:index, :show] do
       collection do
         get 'blog_history'
+        get 'blog_search'
+        get 'blog_genre_search'
       end
       resource :blog_likes, only:[:create, :destroy]
-      resources :comments, only:[:create, :destroy] do
-        resource :comment_likes, only:[:create, :destroy]
-      end
+      resources :comments, only:[:create, :destroy]
     end
     resources :items, only:[:index, :show] do
       member do
@@ -36,6 +36,8 @@ Rails.application.routes.draw do
       end
       collection do
         get 'item_history'
+        get 'item_search'
+        get 'item_genre_search'
       end
       resources :reviews, only:[:create, :destroy]
     end
@@ -52,6 +54,7 @@ Rails.application.routes.draw do
         get 'complete'
       end
     end
+    get 'searchs' => 'searchs#search'
   end
 
   namespace :admins do
@@ -60,5 +63,6 @@ Rails.application.routes.draw do
     resources :genres, except:[:new, :show, :destroy]
     resources :items, except:[:destroy]
     resources :orders, only:[:index, :show, :update]
+    get 'searchs' => 'searchs#search'
   end
 end

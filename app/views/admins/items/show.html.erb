@@ -20,6 +20,10 @@
   在庫あり
 <% else %>
   在庫なし
+<% end %><br>
+
+<% if @item.reviews.present? %>
+  <%= render 'users/reviews/index', item: @item %>
 <% end %>
 
 <%= link_to '編集する', edit_admins_item_path %>

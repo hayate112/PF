@@ -10,6 +10,8 @@ class Admins::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @average_review = @item.reviews.average(:rate).round(2)
+    @reviews = @item.reviews.page(params[:page]).per(5)
   end
 
   def create

@@ -61,13 +61,6 @@ ActiveRecord::Schema.define(version: 2021_03_19_084944) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comment_likes", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "comment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "blog_id"

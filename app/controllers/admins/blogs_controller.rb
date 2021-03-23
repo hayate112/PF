@@ -10,6 +10,7 @@ class Admins::BlogsController < ApplicationController
 
   def show
     @blog = Blog.find(params[:id])
+    @comments = @blog.comments.page(params[:page]).per(5)
   end
 
   def create

@@ -1,11 +1,13 @@
 class Users::ItemsController < ApplicationController
   def index
     @items = Item.page(params[:page]).per(12)
+    @genres = Genre.where(genre_status: false)
   end
 
   def show
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
+    @average_review = @item.reviews.average(:rate).round(2)
     @reviews = @item.reviews.page(params[:page]).per(5)
     new_history = @item.item_historys.new
     new_history.user_id = current_user.id
@@ -30,5 +32,35 @@ class Users::ItemsController < ApplicationController
 
   def item_history
     @historys = ItemHistory.all
+  end
+
+  def item_search
+    selection = params[:keyword]
+    @items = Item.sort(selection)
+    @items = Kaminari.paginate_array(@items).page(params[:page]).per(12)
+    @genres = Genre.where(genre_status: false)
+    render 'users/items/index'
+  end
+
+  def item_genre_search
+    @value = params["search"]["value"]
+    @how = params["search"]["how"]
+    @items = search_for(@how, @value)
+    @items = Kaminari.paginate_array(@items).page(params[:page]).per(12)
+    @genres = Genre.where(genre_status: false)
+    render 'users/items/index'
+  end
+
+  private
+
+  def match(value)
+    Item.where(genre_id: value)
+  end
+
+  def search_for(how, value)
+    case how
+    when 'match'
+      match(value)
+    end
   end
 end

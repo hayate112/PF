@@ -11,4 +11,17 @@ class Blog < ApplicationRecord
   def blog_liked_by?(user)
     blog_likes.where(user_id:user.id).exists?
   end
+
+  def self.sort(selection)
+    case selection
+    when 'new'
+      return all.order(created_at: :DESC)
+    when 'old'
+      return all.order(created_at: :ASC)
+    when 'likes'
+      return find(BlogLike.group(:blog_id).order(Arel.sql('count(user_id) desc')).pluck(:blog_id))
+    when 'dislikes'
+      return find(BlogLike.group(:blog_id).order(Arel.sql('count(user_id) asc')).pluck(:blog_id))
+    end
+  end
 end
