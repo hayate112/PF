@@ -1,3 +1,97 @@
 // Place all the styles related to the Homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-visual {
+  width: 100%;
+  height: 250px;
+  background-image: image-url("sample.png");
+  background-size: cover;
+}
+
+.box {
+  width: 100%;
+  height: 450px;
+  margin: 40px 0;
+  display: flex;
+  justify-content: space-around;
+
+  &__blog {
+    width: 450px;
+    height: 450px;
+    margin-left: 100px;
+    border: 4mm ridge rgba(17, 54, 30, .6);
+    text-align: center;
+    line-height: 450px;
+    font-size: 50px;
+    .EDITlink {
+      text-decoration: none;
+    }
+  }
+
+  &__item {
+    width: 450px;
+    height: 450px;
+    margin-right: 100px;
+    border: 4mm ridge rgba(17, 54, 30, .6);
+    text-align: center;
+    line-height: 450px;
+    font-size: 50px;
+    .EDITlink {
+      text-decoration: none;
+    }
+  }
+}
+
+
+.box2 {
+  width: 100%;
+
+  &__01 {
+    margin: 100px auto 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 40px;
+  }
+
+  &__02 {
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__overview {
+    font-size: 18px;
+  }
+
+  &__03 {
+    margin: 150px auto 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__subtitle {
+    text-align: center;
+    font-size: 30px;
+  }
+
+  &__04 {
+    margin: 30px auto 100px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__information {
+    font-size: 18px;
+  }
+}

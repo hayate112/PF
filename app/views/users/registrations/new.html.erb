@@ -1,74 +1,66 @@
-<h2>新規登録</h2>
-
-<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :family_name %><br />
-    <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name" %>
+<%= render "users/shared/error_messages", resource: resource %>
+<div class="signup-box">
+  <div class="signup-box__inner">
+    <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+    <h2>アカウント作成</h2>
+    <div class="signup-box__family-name">
+      <%= f.label :family_name, '姓' %><br />
+      <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name" %>
+    </div>
+    <div class="signup-box__name">
+      <%= f.label :name, '名' %><br />
+      <%= f.text_field :name, autocomplete: "name" %>
+    </div>
+    <div class="signup-box__family-name-kana">
+      <%= f.label :family_name_kana, '姓（フリガナ）' %><br />
+      <%= f.text_field :family_name_kana, autocomplete: "family_name_kana" %>
+    </div>
+    <div class="signup-box__name-kana">
+      <%= f.label :name_kana, '名（フリガナ）' %><br />
+      <%= f.text_field :name_kana, autocomplete: "name_kana" %>
+    </div>
+    <div class="signup-box__nickname">
+      <%= f.label :nickname, 'ニックネーム' %><br />
+      <%= f.text_field :nickname, autocomplete: "nickname" %>
+    </div>
+    <div class="signup-box__email">
+      <%= f.label :email, 'メールアドレス' %><br />
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
+    <div class="signup-box__postal-code">
+      <%= f.label :postal_code, '郵便番号（ハイフンなし）' %><br />
+      <%= f.text_field :postal_code, autocomplete: "postal_code" %>
+    </div>
+    <div class="signup-box__prefectures">
+      <%= f.label :prefectures, '都道府県' %><br />
+      <%= f.collection_select :prefectures, JpPrefecture::Prefecture.all, :code, :name %>
+    </div>
+    <div class="signup-box__city">
+      <%= f.label :city, '都道府県以降の住所' %><br />
+      <%= f.text_field :city, autocomplete: 'city' %>
+    </div>
+    <div class="signup-box__phone-number">
+      <%= f.label :phone_number, '電話番号（ハイフンなし）' %><br />
+      <%= f.text_field :phone_number, autocomplete: "phone_number" %>
+    </div>
+    <div class="signup-box__password">
+      <%= f.label :password, 'パスワード' %>
+      <% if @minimum_password_length %>
+      <span class="signup-box__password-length">(<%= @minimum_password_length %> 文字以上)</span>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+    <div class="signup-box__password-confirmation">
+      <%= f.label :password_confirmation, 'もう一度パスワードを入力してください' %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+    <div class="signup-box__signup">
+      <%= f.submit "アカウントを作成する" %>
+    </div>
+    <% end %>
+    <div class="signup-box__newusr">
+      <p><span>------------</span> 既に登録済みの方<span>------------</span></p>
+      <%= link_to "ログインページへ", new_user_session_path %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autocomplete: "name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :family_name_kana %><br />
-    <%= f.text_field :family_name_kana, autocomplete: "family_name_kana" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name_kana %><br />
-    <%= f.text_field :name_kana, autocomplete: "name_kana" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autocomplete: "nickname" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code, autocomplete: "postal_code" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :prefectures %><br />
-    <%= f.collection_select :prefectures, JpPrefecture::Prefecture.all, :code, :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city, autocomplete: 'city' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number, autocomplete: "phone_number" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, 'パスワード確認用' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

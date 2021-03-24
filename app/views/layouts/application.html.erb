@@ -44,6 +44,11 @@
           <% end %>
         </div>
         <div class="search">
+           <div class="flash">
+            <% if flash[:notice] %>
+              <%= flash[:notice] %>
+            <% end %>
+          </div>
           <% if user_signed_in? %>
             <div>
               <%= form_with url: searchs_path, method: :get, local: true do |f| %>
@@ -65,11 +70,7 @@
         </div>
       </div>
     </header>
-    <div>
-      <% if flash[:notice] %>
-        <%= flash[:notice] %>
-      <% end %>
-    </div>
     <%= yield %>
+    <footer></footer>
   </body>
 </html>

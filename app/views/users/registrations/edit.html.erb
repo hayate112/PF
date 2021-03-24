@@ -1,88 +1,85 @@
-<h2>登録情報編集</h2>
+<%= render "users/shared/error_messages", resource: resource %>
+<div class="signup-box--edit">
+  <div class="signup-box__inner">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <h2>登録情報の変更</h2>
+    <div class="signup-box__family-name">
+      <%= f.label :family_name, '姓' %><br />
+      <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name" %>
+    </div>
+    <div class="signup-box__name">
+      <%= f.label :name, '名' %><br />
+      <%= f.text_field :name, autocomplete: "name" %>
+    </div>
+    <div class="signup-box__family-name-kana">
+      <%= f.label :family_name_kana, '姓（フリガナ）' %><br />
+      <%= f.text_field :family_name_kana, autocomplete: "family_name_kana" %>
+    </div>
+    <div class="signup-box__name-kana">
+      <%= f.label :name_kana, '名（フリガナ）' %><br />
+      <%= f.text_field :name_kana, autocomplete: "name_kana" %>
+    </div>
+    <div class="signup-box__nickname">
+      <%= f.label :nickname, 'ニックネーム' %><br />
+      <%= f.text_field :nickname, autocomplete: "nickname" %>
+    </div>
+    <div class="signup-box__email">
+      <%= f.label :email, 'メールアドレス' %><br />
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
+    <div class="signup-box__postal-code">
+      <%= f.label :postal_code, '郵便番号（ハイフンなし）' %><br />
+      <%= f.text_field :postal_code, autocomplete: "postal_code" %>
+    </div>
+    <div class="signup-box__prefectures">
+      <%= f.label :prefectures, '都道府県' %><br />
+      <%= f.collection_select :prefectures, JpPrefecture::Prefecture.all, :code, :name %>
+    </div>
+    <div class="signup-box__city">
+      <%= f.label :city, '都道府県以降の住所' %><br />
+      <%= f.text_field :city, autocomplete: 'city' %>
+    </div>
+    <div class="signup-box__phone-number">
+      <%= f.label :phone_number, '電話番号（ハイフンなし）' %><br />
+      <%= f.text_field :phone_number, autocomplete: "phone_number" %>
+    </div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+  <!--  <div class="field">-->
+  <!--    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />-->
+  <!--    <%= f.password_field :password, autocomplete: "new-password" %>-->
+  <!--    <% if @minimum_password_length %>-->
+  <!--      <br />-->
+  <!--      <em><%= @minimum_password_length %> characters minimum</em>-->
+  <!--    <% end %>-->
+  <!--  </div>-->
 
-  <div class="field">
-    <%= f.label :family_name %><br />
-    <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name" %>
+  <!--  <div class="field">-->
+  <!--    <%= f.label :password_confirmation %><br />-->
+  <!--    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>-->
+  <!--  </div>-->
+
+  <!--<h3>Cancel my account</h3>-->
+
+  <!--<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>-->
+
+  <!--<%= link_to "Back", :back %>-->
+
+    <div class="signup-box__password">
+      <%= f.label :current_password, 'パスワード（本人確認用）' %><br />
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+    <div class="signup-box__signup">
+      <%= f.submit "変更を保存する" %>
+    </div>
+    <% end %>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autocomplete: "name" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :family_name_kana %><br />
-    <%= f.text_field :family_name_kana, autocomplete: "family_name_kana" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :name_kana %><br />
-    <%= f.text_field :name_kana, autocomplete: "name_kana" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autocomplete: "nickname" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code, autocomplete: "postal_code" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :prefectures %><br />
-    <%= f.collection_select :prefectures, JpPrefecture::Prefecture.all, :code, :name %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city, autocomplete: 'city' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number, autocomplete: "phone_number" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-<!--  <div class="field">-->
-<!--    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />-->
-<!--    <%= f.password_field :password, autocomplete: "new-password" %>-->
-<!--    <% if @minimum_password_length %>-->
-<!--      <br />-->
-<!--      <em><%= @minimum_password_length %> characters minimum</em>-->
-<!--    <% end %>-->
-<!--  </div>-->
-
-<!--  <div class="field">-->
-<!--    <%= f.label :password_confirmation %><br />-->
-<!--    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>-->
-<!--  </div>-->
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "変更を保存" %>
-  </div>
-<% end %>
-
-<!--<h3>Cancel my account</h3>-->
-
-<!--<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>-->
-
-<!--<%= link_to "Back", :back %>-->

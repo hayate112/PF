@@ -1,12 +1,12 @@
-<h2>Topページ</h2>
+<div class="main-visual">
 
-<div>
-  <%= link_to blogs_path do %>
-    <p>Blogサイト</p>
-  <% end %>
 </div>
-<div>
-  <%= link_to items_path do %>
-    <p>Shopサイト</p>
-  <% end %>
+
+<div class="box">
+  <div class="box__blog">
+    <%= link_to 'BLOG', blogs_path, class: 'EDITlink' %>
+  </div>
+  <div class="box__item">
+    <%= link_to 'SHOP', items_path, class: 'EDITlink' %>
+  </div>
 </div>
