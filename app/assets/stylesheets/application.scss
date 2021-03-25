@@ -23,25 +23,32 @@
 header {
   width: 100%;
   display: flex;
-  background-color: gray;
+  background-color: #EEEEEE;
 }
 
 .main {
   width: 20%;
-  height: 80px;
+  margin: auto 0;
   text-align: center;
   display: inline;
 
   &__icon {
-    width: 40%;
-    height: 50px;
-    line-height: 50px;
-    margin: 13px 30%;
-    font-size: 30px;
-    border: 2px solid gray;
-    background-color: #fff;
     .EDITlink {
       text-decoration: none;
+      display: inline-block;
+      font-size: 20pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 20px 31px;
+      background: #ffffff;
+      color: #a6a6a6;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #ffffff;
+    }
+    .EDITlink:hover {
+      color: #ffffff;
+      background: #a6a6a6;
     }
   }
 }
@@ -70,16 +77,24 @@ header {
   }
 
   &__list {
-    width: 10%;
-    height: 40px;
-    margin: 0 5px;
-    line-height: 40px;
-    font-size: 15px;
-    border: 2px solid gray;
-    border-radius: 0.5em;
-    background-color: #fff;
+    margin: 4px 6px;
     .EDITlink {
       text-decoration: none;
+      display       : inline-block;
+      border-radius : 11%;          /* 角丸       */
+      font-size     : 12pt;        /* 文字サイズ */
+      text-align    : center;      /* 文字位置   */
+      cursor        : pointer;     /* カーソル   */
+      padding       : 10px 18px;   /* 余白       */
+      background    : #ffffff;     /* 背景色     */
+      color         : #a6a6a6;     /* 文字色     */
+      line-height   : 1em;         /* 1行の高さ  */
+      transition    : .3s;         /* なめらか変化 */
+      border        : 2px solid #ffffff;    /* 枠の指定 */
+    }
+    .EDITlink:hover {
+      color         : #ffffff;     /* 背景色     */
+      background    : #a6a6a6;
     }
   }
 }
@@ -119,10 +134,10 @@ header {
 
 .flash {
   height: 40px;
-  margin: auto auto auto 170px;
+  margin: auto auto auto 180px;
   line-height: 40px;
   font-size: 15px;
-  color: #fff;
+  color: #AAAAAA;
 }
 
 footer {

@@ -1,3 +1,199 @@
 // Place all the styles related to the admins/Blogs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new-box {
+  width: 700px;
+  height: 750px;
+  margin: 60px auto;
+  border-radius: 4px;
+  border: 1px #ddd solid;
+
+  &__inner {
+    padding: 20px 26px;
+  }
+
+  &__title {
+    margin-bottom: 13px;
+  }
+
+  &__body {
+    margin-bottom: 13px;
+  }
+
+  &__image {
+    margin-bottom: 13px;
+  }
+
+  &__genre {
+    margin-bottom: 13px;
+  }
+
+  &__title label, &__body label, &__image label, &__genre label {
+    font-weight: 700;
+    font-size: 20px;
+    padding-left: 2px;
+    padding-bottom: 2px;
+  }
+
+  &__title input[type="text"] {
+    border-style: none;
+    box-sizing: border-box;
+    width: 100%;
+    height: 31px;
+    border: 1px solid #a6a6a6;
+    box-shadow: 0 1px 0 rgba(0,0,0,.07) inset;
+    border-radius: 3px;
+    padding: 0 7px;
+  }
+
+  &__submit input[type="submit"] {
+    display: inline-block;
+    border-radius: 7%;
+    font-size: 13pt;
+    text-align: center;
+    cursor: pointer;
+    padding: 7px 42px;
+    background: #007fff;
+    color: #ffffff;
+    line-height: 1em;
+    transition: .3s;
+    border: 2px solid #007fff;
+  }
+
+  &__submit input[type="submit"]:hover {
+    color: #007fff;
+    background: #ffffff;
+  }
+
+  &__submit-edit input[type="submit"] {
+    display: inline-block;
+    border-radius: 7%;
+    font-size: 13pt;
+    text-align: center;
+    cursor: pointer;
+    padding: 7px 42px;
+    background: #00DD00;
+    color: #ffffff;
+    line-height: 1em;
+    transition: .3s;
+    border: 2px solid #00DD00;
+  }
+
+  &__submit-edit input[type="submit"]:hover {
+    color: #00DD00;
+    background: #ffffff;
+  }
+
+  &__submit {
+    margin-bottom: 26px;
+  }
+}
+
+
+.index-box {
+  width: 100%;
+
+  &__inner-blogs {
+    width: 70%;
+    margin: 60px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__title-blogs {
+    margin-right: 350px;
+  }
+
+  &__new-blogs {
+    margin-left: 300px;
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 55px;
+      background: #a6a6a6;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #a6a6a6;
+    }
+    .EDITlink:hover {
+      color: #a6a6a6;
+      background: #ffffff;
+    }
+  }
+
+  &__blogs-box {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+  }
+
+  &__blogs {
+    width: 343px;
+    height: 200px;
+    margin: 25px 50px;
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      font-size: 13pt;
+      text-align: left;
+      cursor: pointer;
+      padding: 7px 50px;
+      color: #777777;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #a6a6a6;
+    }
+  }
+
+  &__blogs-title {
+    width: 239px;
+    margin: 10px auto;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__blogs-body-image-genre {
+    margin: 10px auto;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__blogs-body {
+    width: 109px;
+    margin-right: 5px;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__blogs-image-genre {
+    margin-left: 5px;
+  }
+
+  &__blogs-image {
+    margin-bottom: 5px;
+  }
+
+  &__blogs-genre {
+    margin-top: 5px;
+    font-size: 15px;
+    text-align: left;
+  }
+
+  &__blogs-kaminari {
+    display: flex;
+    justify-content: center;
+  }
+}

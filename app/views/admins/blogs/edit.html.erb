@@ -1,27 +1,26 @@
-<h2>投稿編集</h2>
-
-<%= form_with(model:[:admins, @blog], local: true) do |f| %>
-  <div class="field">
-    <%= f.label :title, 'タイトル' %>
-    <%= f.text_field :title %>
+<div class="new-box">
+  <div class="new-box__inner">
+    <%= form_with(model:[:admins, @blog], local: true) do |f| %>
+    <h2>新規投稿</h2>
+    <div class="new-box__title">
+      <%= f.label :title, 'タイトル' %><br>
+      <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+    </div>
+    <div class="new-box__body">
+      <%= f.label :body, '内容' %><br>
+      <%= f.text_area :body, size: "90x20", autocomplete: "body" %>
+    </div>
+    <div class="new-box__image">
+      <%= f.label :blog_images_images, '投稿画像' %><br>
+      <%= f.attachment_field :blog_images_images, multiple: true %>
+    </div>
+    <div class="new-box__genre">
+      <%= f.label :genre_id, 'ジャンル' %><br>
+      <%= f.collection_select :genre_id, Genre.where(genre_status: true), :id, :name %>
+    </div>
+    <div class="new-box__submit-edit">
+      <%= f.submit '変更を保存' %>
+    </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :body, '投稿内容' %>
-    <%= f.text_area :body %>
-  </div>
-
-  <div class="field">
-    <%= f.label :blog_images_images, '投稿画像' %>
-    <%= f.attachment_field :blog_images_images, multiple: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :genre_id, 'ジャンル' %>
-    <%= f.collection_select :genre_id, Genre.where(genre_status: true), :id, :name %>
-  </div>
-
-  <div class="field">
-    <%= f.submit '変更を保存' %>
-  </div>
-<% end %>
+</div>

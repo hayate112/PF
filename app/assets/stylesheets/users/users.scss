@@ -1,3 +1,233 @@
 // Place all the styles related to the users/Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.user-show-box {
+  width: 100%;
+  margin: 40px auto;
+
+  &__title {
+    width: 60%;
+    margin: 0 auto 15px;
+    display: flex;
+    text-align: left;
+  }
+
+  &__edit {
+    width: 70%;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__edit-element {
+    font-size: 22px;
+    margin-right: 80px;
+    margin-left: 297px;
+  }
+
+  &__edit-link {
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 42px;
+      background: #00b300;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #00b300;
+    }
+    .EDITlink:hover {
+      color: #00b300;
+      background: #ffffff;
+    }
+  }
+
+  &__user-date {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__element {
+    height: 300px;
+    font-size: 18px;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__date {
+    height: 300px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__receiver {
+    width: 70%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__receiver-element {
+    font-size: 22px;
+    margin-right: 103px;
+    margin-left: 297px;
+  }
+
+  &__receiver-link {
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 42px;
+      background: #7f7f7f;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #7f7f7f;
+    }
+    .EDITlink:hover {
+      color: #7f7f7f;
+      background: #ffffff;
+    }
+  }
+
+  &__order {
+    width: 80%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__order-element {
+    font-size: 22px;
+    margin-right: 80px;
+    margin-left: 297px;
+  }
+
+  &__order-link {
+    margin-right: 300px;
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 55px;
+      background: #7f7f7f;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #7f7f7f;
+    }
+    .EDITlink:hover {
+      color: #7f7f7f;
+      background: #ffffff;
+    }
+  }
+
+  &__unsubscribe-link {
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 42px;
+      background: #ff0000;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #ff0000;
+    }
+    .EDITlink:hover {
+      color: #ff0000;
+      background: #ffffff;
+    }
+  }
+}
+
+
+.user-unsubscribe-box {
+  width: 100%;
+  margin: 100px auto;
+
+  &__title {
+    width: 60%;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+
+  &__body {
+    width: 60%;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  &__button {
+    width: 40%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__button-no {
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 42px;
+      background: #00b300;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #00b300;
+    }
+    .EDITlink:hover {
+      color: #00b300;
+      background: #ffffff;
+    }
+  }
+
+  &__button-yes {
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 42px;
+      background: #ff0000;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #ff0000;
+    }
+    .EDITlink:hover {
+      color: #ff0000;
+      background: #ffffff;
+    }
+  }
+}

@@ -1,11 +1,20 @@
-<h2>退会確認</h2>
+<div class="user-unsubscribe-box">
+  <div class="user-unsubscribe-box__title">
+    <h2>本当に退会しますか？</h2>
+  </div>
+  <div class="user-unsubscribe-box__body">
+    <p>
+      退会すると、会員登録情報や<br>
+      これまでの購入履歴が閲覧できなくなります。<br>
+      退会する場合は、「退会する」をクリックしてください。<br>
+    </p>
+  </div>
+  <div class="user-unsubscribe-box__button">
+    <div class="user-unsubscribe-box__button-no"><%= link_to "退会しない", users_path, class: 'EDITlink' %></div>
+    <div class="user-unsubscribe-box__button-yes"><%= link_to "退会する", withdraw_users_path, method: :patch, class: 'EDITlink' %></div>
+  </div>
+</div>
 
-<h3>本当に退会しますか？</h3>
-<p>
-  退会すると、会員登録情報や<br>
-  これまでの購入履歴が閲覧できなくなります。<br>
-  退会する場合は、「退会する」をクリックしてください。<br>
-</p>
 
-<%= link_to "退会しない", users_path %>
-<%= link_to "退会する", withdraw_users_path, method: :patch %>
+
+

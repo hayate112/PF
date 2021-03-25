@@ -1,21 +1,36 @@
-<h2>マイページ</h2>
-
-登録情報：<%= link_to '編集する', edit_user_registration_path %><br>
-
-氏名：<%= @user.family_name %><%= @user.name %><br>
-
-フリガナ：<%= @user.family_name_kana %><%= @user.name_kana %><br>
-
-郵便番号：〒<%= @user.postal_code %><br>
-
-住所：<%= @user.prefecture_name %><%= @user.city %><br>
-
-電話番号：<%= @user.phone_number %><br>
-
-メールアドレス：<%= @user.email %><br>
-
-配送先：<%= link_to '追加/一覧', receivers_path %>
-
-注文履歴：<%= link_to '一覧へ', orders_path %>
-
-<%= link_to '退会する', unsubscribe_users_path %>
+<div class="user-show-box">
+  <div class="user-show-box__title">
+    <h2>マイページ</h2><br>
+  </div>
+  <div class="user-show-box__edit">
+    <div class="user-show-box__edit-element">登録情報：</div>
+    <div class="user-show-box__edit-link"><%= link_to '編集する', edit_user_registration_path, class: 'EDITlink' %></div>
+  </div>
+  <div class="user-show-box__user-date">
+    <div class="user-show-box__element">
+      <div class="list">氏名：</div>
+      <div class="list">フリガナ：</div>
+      <div class="list">郵便番号：</div>
+      <div class="list">住所：</div>
+      <div class="list">電話番号：</div>
+      <div class="list">メールアドレス：</div>
+    </div>
+    <div class="user-show-box__date">
+      <div class="list"><%= @user.family_name %><%= @user.name %></div>
+      <div class="list"><%= @user.family_name_kana %><%= @user.name_kana %></div>
+      <div class="list">〒<%= @user.postal_code %></div>
+      <div class="list"><%= @user.prefecture_name %><%= @user.city %></div>
+      <div class="list"><%= @user.phone_number %></div>
+      <div class="list"><%= @user.email %></div>
+    </div>
+  </div>
+  <div class="user-show-box__receiver">
+    <div class="user-show-box__receiver-element">配送先：</div>
+    <div class="user-show-box__receiver-link"><%= link_to '追加/一覧', receivers_path, class: 'EDITlink' %></div>
+  </div>
+  <div class="user-show-box__order">
+    <div class="user-show-box__order-element">注文履歴：</div>
+    <div class="user-show-box__order-link"><%= link_to '一覧へ', orders_path, class: 'EDITlink' %></div>
+    <div class="user-show-box__unsubscribe-link"><%= link_to '退会する', unsubscribe_users_path, class: 'EDITlink' %></div>
+  </div>
+</div>

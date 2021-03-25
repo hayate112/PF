@@ -1,20 +1,31 @@
-<h2>ブログ一覧</h2>
+<div class="index-box">
+  <div class="index-box__inner-blogs">
+    <h2 class="index-box__title-blogs">ブログ一覧</h2>
+    <div class="index-box__new-blogs"><%= link_to '投稿する', new_admins_blog_path, class: 'EDITlink' %></div>
+  </div>
+  <div class="index-box__blogs-box">
+      <% @blogs.each do |blog| %>
+        <div class="index-box__blogs">
+          <%= link_to admins_blog_path(blog.id), class: 'EDITlink' do %>
+            <div class="index-box__blogs-title"><%= blog.title %></div>
+            <div class="index-box__blogs-body-image-genre">
+              <div class="index-box__blogs-body"><%= blog.body %></div>
+              <div class="index-box__blogs-image-genre">
+                <div class="index-box__blogs-image">
+                  <% blog.blog_images.first(1).each do |image| %>
+                    <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
+                  <% end %>
+                </div>
+                <div class="index-box__blogs-genre">ジャンル: <%= blog.genre.name %></div>
+              </div>
+            </div>
+            
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+  <div class="index-box__blogs-kaminari">
+    <%= paginate @blogs %>
+  </div>
+</div>
 
-<%= link_to '投稿する', new_admins_blog_path %>
-
-<% @blogs.each do |blog| %>
-  <%= link_to admins_blog_path(blog.id) do %>
-    <div>
-      <div><%= blog.title %></div>
-      <div><%= blog.body %></div>
-      <div>
-        <% blog.blog_images.first(1).each do |image| %>
-          <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
-        <% end %>
-      </div>
-      </div>
-      <div><%= blog.genre.name %></div>
-    </div>
-  <% end %>
-<% end %>
-<%= paginate @blogs %>
