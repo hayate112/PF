@@ -1,41 +1,64 @@
-<h2>商品詳細</h2>
-
-商品名<%= @item.name %><br>
-
-商品説明<%= @item.description %><br>
-
-商品画像：
-<% @item.item_images.each do |image| %>
-  <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
-<% end %><br>
-
-
-ジャンル<%= @item.genre.name %><br>
-
-税抜価格（税込価格）<%= @item.price %><%= (@item.price * 1.08).round %><br>
-
-在庫<%= @item.count %><br>
-
-<% if @item.count == 0 %>
-  在庫がありません。入荷をお待ちください。
-<% elsif user_signed_in? %>
-  <%= form_with(model:[@cart_item], local: true) do |f| %>
-    <div>
-      個数選択
-      <%= f.select :count, [*1..10] %>
-      <%= f.hidden_field :item_id, value: @item.id %>
+<div class="item-show-box">
+  <div class="item-show-box__inner-item--user">
+    <h2 class="item-show-box__title-item">商品詳細</h2>
+  </div>
+  <div class="item-show-box__item-box">
+    <div class="item-show-box__item-images">
+      <% @item.item_images.each do |image| %>
+        <div class="item-show-box__item-image">
+          <%= attachment_image_tag image, :image, :fill, 260, 170, fallback: "no_image.jpg", size: "260x170" %>
+        </div>
+      <% end %>
     </div>
-    <div>
-      <%= f.submit 'カートに入れる' %>
+    <div class="item-show-box__item-other-box">
+      <div class="item-show-box__item-other-name-box">
+        <div class="item-show-box__item-other-name">商品名</div>
+        <div class="item-show-box__item-other-name--right"><%= @item.name %></div>
+      </div>
+      <div class="item-show-box__item-other-description-box">
+        <div class="item-show-box__item-other-description">商品説明</div>
+        <div class="item-show-box__item-other-description--right"><%= @item.description %></div>
+      </div>
+      <div class="item-show-box__item-other-genre-box">
+        <div class="item-show-box__item-other-genre">ジャンル</div>
+        <div class="item-show-box__item-other-genre--right"><%= @item.genre.name %></div>
+      </div>
+      <div class="item-show-box__item-other-price-box">
+        <div class="item-show-box__item-other-price">
+          税抜価格<br>
+        （税込価格）
+        </div>
+        <div class="item-show-box__item-other-price--right">
+          <%= @item.price %>円<br>
+          (<%= (@item.price * 1.08).round %>円)
+        </div>
+      </div>
+      <div class="item-show-box__item-other-count-box">
+        <div class="item-show-box__item-other-count">在庫</div>
+        <div class="item-show-box__item-other-count--right"><%= @item.count %>個</div>
+      </div>
+      <% if @item.count == 0 %>
+        在庫がありません。入荷をお待ちください。
+      <% elsif user_signed_in? %> 
+        <%= form_with(model:[@cart_item], local: true) do |f| %>
+          <div class="item-show-box__item-other-cart-box">
+            <div class="item-show-box__item-other-cart">
+              <%= f.label :count, '個数選択' %>
+              <%= f.select :count, [*1..10] %>
+              <%= f.hidden_field :item_id, value: @item.id %>
+            </div>
+            <div class="item-show-box__item-other-cart--right"><%= f.submit 'カートに入れる' %></div>
+          </div>
+        <% end %>
+      <% else %>
+        購入するには、ログインが必要です。
+        ログインは、<%= link_to 'こちらへ', user_session_path %>
+      <% end %>
     </div>
-  <% end %>
-<% else %>
-  購入するには、ログインが必要です。
-  ログインは、<%= link_to 'こちらへ', user_session_path %>
-<% end %>
-
-<% if @item.reviews.present? %>
-  <%= render 'users/reviews/index', item: @item %>
-<% end %>
-
-
+  </div>
+  <div class="item-show-box__item-review-box">
+    <% if @item.reviews.present? %>
+      <%= render 'users/reviews/index', item: @item %>
+    <% end %>
+  </div>
+</div>

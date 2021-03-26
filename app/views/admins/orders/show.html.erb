@@ -1,52 +1,92 @@
-<h2>注文履歴詳細</h2>
+<div class="order-show-box">
+  <div class="order-show-box__title">
+    <h2>注文履歴詳細</h2>
+  </div>
+  <div class="order-show-box__order-user-box">
+    <div class="order-show-box__order-user-name-box">
+      <div class="order-show-box__order-user-name">購入者</div>
+      <div class="order-show-box__order-user-name--right">
+        <%= link_to admins_user_path(@order.user.id) do %>
+          <%= @order.user.family_name %><%= @order.user.name %>
+        <% end %>
+      </div>
+    </div>
+    <div class="order-show-box__order-created-box">
+      <div class="order-show-box__order-created">注文日時</div>
+      <div class="order-show-box__order-created--right"><%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></div>
+    </div>
+    <div class="order-show-box__order-reverse-box">
+      <div class="order-show-box__order-reverse">配送先</div>
+      <div class="order-show-box__order-reverse--right">
+        〒<%= @order.postal_code %><br>
+        <%= @order.user.prefecture_name %><%= @order.city %><br>
+        <%= @order.name %>
+      </div>
+    </div>
+    <div class="order-show-box__order-payment-box">
+      <div class="order-show-box__order-payment">支払方法</div>
+      <div class="order-show-box__order-payment--right">
+        <% if @order.payment == 0 %>
+          クレジットカード
+        <% else %>
+          銀行振込
+        <% end %>
+      </div>
+    </div>
+    <div class="order-show-box__order-status-box">
+      <div class="order-show-box__order-status">発送ステータス</div>
+      <div class="order-show-box__order-status--right">
+        <%= form_with(model:[:admins, @order], local: true) do |f| %>
+          <div class="order-show-box__order-status-form-box">
+            <div class="order-show-box__order-status-select">
+              <%= f.select :shipping_status, {'入金待ち': 0, '発送準備中': 1, '発送完了': 2, 'お届け済み': 3}, included_blank: "#{@order.shipping_status}" %>
+            </div>
+            <div class="order-show-box__order-status-submit">
+              <%= f.submit '更新' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="order-show-box__order-box">
+    <div class="order-show-box__order-table1">
+      <table>
+        <tr>
+          <th colspan="2">商品名</th>
+          <th>単価（税込）</th>
+          <th>注文個数</th>
+        </tr>
+        <% @order.order_items.each do |order_item| %>
+          <tr>
+            <td>
+              <% order_item.item.item_images.first(1).each do |image| %>
+                <%= attachment_image_tag image, :image, :fill, 60, 40, fallback: "no_image.jpg", size: "60x40" %>
+              <% end %>
+            </td>
+            <td><%= order_item.item.name %></td>
+            <td><%= (order_item.item.price * 1.08).round %>円</td>
+            <td><%= order_item.count %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="order-show-box__order-table2">
+      <table>
+        <tr>
+          <th>商品合計</th>
+          <th>送料</th>
+          <th>請求金額（税込）</th>
+        </tr>
+        <tr>
+          <td><%= @order.amount - @order.shipping_fee %>円</td>
+          <td><%= @order.shipping_fee %>円</td>
+          <td><%= @order.amount %>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-購入者
-<%= link_to admins_user_path(@order.user.id) do %>
-  <%= @order.user.family_name %><%= @order.user.name %><br>
-<% end %>
-注文日時<%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %><br>
-配送先
-〒<%= @order.postal_code %><br>
-<%= @order.prefectures %><%= @order.city %><br>
-<%= @order.name %><br>
-支払方法
-<% if @order.payment == 0 %>
-  クレジットカード
-<% else %>
-  銀行振込
-<% end %><br>
-発送ステータス
-<%= form_with(model:[:admins, @order], local: true) do |f| %>
-  <%= f.select :shipping_status, {'入金待ち': 0, '発送準備中': 1, '発送完了': 2, 'お届け済み': 3}, included_blank: "#{@order.shipping_status}" %>
-  <%= f.submit '更新' %>
-<% end %>
 
-<table>
-  <tr>
-    <th>商品名</th>
-    <th></th>
-    <th>単価（税込）</th>
-    <th>注文個数</th>
-  </tr>
-  <% @order.order_items.each do |order_item| %>
-    <tr>
-      <td></td>
-      <td><%= order_item.item.name %></td>
-      <td><%= (order_item.item.price * 1.08).round %></td>
-      <td><%= order_item.count %></td>
-    </tr>
-  <% end %>
-</table>
-<table>
-  <tr>
-    <th>商品合計</th>
-    <th>送料</th>
-    <th>請求金額（税込）</th>
-  </tr>
-  <tr>
-    <td><%= @order.amount - @order.shipping_fee %></td>
-    <td><%= @order.shipping_fee %></td>
-    <td><%= @order.amount %></td>
-  </tr>
-</table>
+
 

@@ -1,32 +1,39 @@
-<h2>商品一覧</h2>
-
-<%= link_to '投稿する', new_admins_item_path %>
-<table>
-  <tr>
-    <th>商品ID</th>
-    <th>商品名</th>
-    <th>税抜価格</th>
-    <th>ジャンル</th>
-    <th>ステータス</th>
-  </tr>
-  <% @items.each do |item| %>
-  <tr>
-    <td><%= item.id %></td>
-    <td>
-      <%= link_to admins_item_path(item.id) do %>
-        <%= item.name %>
+<div class="item-index-box">
+  <div class="item-index-box__inner-items">
+    <h2 class="item-index-box__title-items">商品一覧</h2>
+    <div class="item-index-box__new-items"><%= link_to '商品追加', new_admins_item_path, class: 'EDITlink' %></div>
+  </div>
+  <div class="item-index-box__items-table">
+    <table>
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+      <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td>
+          <%= link_to admins_item_path(item.id) do %>
+            <%= item.name %>
+          <% end %>
+        </td>
+        <td><%= item.price %>円</td>
+        <td><%= item.genre.name %></td>
+        <td>
+          <% if item.sale_status == true %>
+            <div class="item-index-box__items-table--green">在庫あり</div>
+          <% else %>
+            <div class="item-index-box__items-table--gray">在庫なし</div>
+          <% end %>
+        </td>
+      </tr>
       <% end %>
-    </td>
-    <td><%= item.price %></td>
-    <td><%= item.genre.name %></td>
-    <td>
-      <% if item.sale_status == true %>
-        在庫あり
-      <% else %>
-        在庫なし
-      <% end %>
-    </td>
-  </tr>
-  <% end %>
-</table>
-<%= paginate @items %>
+    </table>
+  </div>
+  <div class="item-index-box__kaminari-items">
+    <%= paginate @items %>
+  </div>
+</div>

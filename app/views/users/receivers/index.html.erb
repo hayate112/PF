@@ -1,47 +1,56 @@
-<h2>配送先の登録/一覧</h2>
-
-<%= form_with(model:[@receiver], local: true) do |f| %>
-  <div class='field'>
-    <%= f.label :postal_code, '郵便番号' %>
-    <%= f.text_field :postal_code %>
+<div class="receiver-box">
+  <div class="receiver-box-new">
+    <div class="receiver-box-new__inner">
+      <%= form_with(model:[@receiver], local: true) do |f| %>
+      <h2>配送先の登録</h2>
+      <div class="receiver-box-new__postal-code">
+        <%= f.label :postal_code, '郵便番号' %>
+        <%= f.text_field :postal_code %>
+      </div>
+      <div class="receiver-box-new__prefectures">
+        <%= f.label :prefectures, '都道府県' %>
+        <%= f.text_field :prefectures %>
+      </div>
+      <div class="receiver-box-new__city">
+        <%= f.label :city, '住所' %>
+        <%= f.text_field :city %>
+      </div>
+      <div class="receiver-box-new__name">
+        <%= f.label :name, '宛名' %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="receiver-box-new__submit">
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.submit '新規追加' %>
+      </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class='field'>
-    <%= f.label :prefectures, '都道府県' %>
-    <%= f.text_field :prefectures %>
+  <div class="receiver-box-index">
+    <div class="receiver-box-index__inner">
+      <h2>配送先一覧</h2>
+    </div>
+    <div class="receiver-box-index__index">
+      <div class="receiver-box-index__table">
+        <table>
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @receivers.each do |receiver| %>
+          <tr>
+            <td>〒<%= receiver.postal_code %></td>
+            <td><%= receiver.prefectures %><%= receiver.city %></td>
+            <td><%= receiver.name %></td>
+            <td class="receiver-box-index__index-edit"><%= link_to '編集する', edit_receiver_path(receiver.id), class: 'EDITlink' %></td>
+            <td class="receiver-box-index__index-delete"><%= link_to '削除', receiver_path(receiver.id), method: :delete, class: 'EDITlink', data: { confirm: '本当に削除してもよろしいですか?' } %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
   </div>
-
-  <div class='field'>
-    <%= f.label :city, '住所' %>
-    <%= f.text_field :city %>
-  </div>
-
-  <div class='field'>
-    <%= f.label :name, '宛名' %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class='field'>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.submit '新規追加' %>
-  </div>
-<% end %>
-
-<table>
-  <tr>
-    <th>郵便番号</th>
-    <th>住所</th>
-    <th>宛名</th>
-    <th></th>
-    <th></th>
-  </tr>
-  <% @receivers.each do |receiver| %>
-  <tr>
-    <td>〒<%= receiver.postal_code %></td>
-    <td><%= receiver.prefectures %><%= receiver.city %></td>
-    <td><%= receiver.name %></td>
-    <td><%= link_to '編集する', edit_receiver_path(receiver.id) %></td>
-    <td><%= link_to '削除', receiver_path(receiver.id), method: :delete, data: { confirm: '本当に削除してもよろしいですか?' } %></td>
-  </tr>
-  <% end %>
-</table>
+</div>

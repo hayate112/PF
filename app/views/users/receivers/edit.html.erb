@@ -1,28 +1,29 @@
-<h2>配送先編集</h2>
-
-<%= form_with(model:[@receiver], local: true) do |f| %>
-  <div class='field'>
-    <%= f.label :postal_code, '郵便番号' %>
-    <%= f.text_field :postal_code %>
+<div class="receiver-box">
+  <div class="receiver-box-new">
+    <div class="receiver-box-new__inner">
+      <%= form_with(model:[@receiver], local: true) do |f| %>
+      <h2>配送先の編集</h2>
+      <div class="receiver-box-new__postal-code">
+        <%= f.label :postal_code, '郵便番号' %>
+        <%= f.text_field :postal_code %>
+      </div>
+      <div class="receiver-box-new__prefectures">
+        <%= f.label :prefectures, '都道府県' %>
+        <%= f.text_field :prefectures %>
+      </div>
+      <div class="receiver-box-new__city">
+        <%= f.label :city, '住所' %>
+        <%= f.text_field :city %>
+      </div>
+      <div class="receiver-box-new__name">
+        <%= f.label :name, '宛名' %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="receiver-box-new__submit-edit">
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.submit '変更を保存' %>
+      </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class='field'>
-    <%= f.label :prefectures, '都道府県' %>
-    <%= f.text_field :prefectures %>
-  </div>
-
-  <div class='field'>
-    <%= f.label :city, '住所' %>
-    <%= f.text_field :city %>
-  </div>
-
-  <div class='field'>
-    <%= f.label :name, '宛名' %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class='field'>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.submit '変更を保存' %>
-  </div>
-<% end %>
+</div>

@@ -1,3 +1,180 @@
 // Place all the styles related to the admins/Orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.order-index-box {
+  width: 100%;
+  margin: 40px auto;
+
+  &__title {
+    width: 60%;
+    margin: 0 auto 15px;
+    display: flex;
+    text-align: left;
+  }
+
+  &__table {
+    display: flex;
+    justify-content: center;
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 55px;
+      background: #a6a6a6;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #a6a6a6;
+    }
+    .EDITlink:hover {
+      color: #a6a6a6;
+      background: #ffffff;
+    }
+
+    &--red {
+      color: #FF0000;
+    }
+
+    &--green {
+      color: #00CC00;
+    }
+
+    &--gray {
+      color: #999999;
+    }
+  }
+
+  &__kaminari-orders {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
+.order-show-box {
+  width: 100%;
+  margin: 40px auto;
+
+  &__title {
+    width: 60%;
+    margin: 0 auto 15px;
+    display: flex;
+    text-align: left;
+  }
+  
+  &__table {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  &__order-user-box {
+    width: 50%;
+    margin: 0 auto 50px;
+  }
+
+  &__order-user-name-box {
+    display: flex;
+    margin: 5px 0;
+    font-size: 18px;
+  }
+
+  &__order-user-name {
+    width: 200px;
+  }
+
+  &__order-created-box {
+    display: flex;
+    margin: 5px 0;
+    font-size: 18px;
+  }
+
+  &__order-created {
+    width: 200px;
+  }
+
+  &__order-reverse-box {
+    display: flex;
+    margin: 5px 0;
+    font-size: 18px;
+  }
+
+  &__order-reverse {
+    width: 200px;
+  }
+
+  &__order-payment-box {
+    display: flex;
+    margin: 5px 0;
+    font-size: 18px;
+  }
+
+  &__order-payment {
+    width: 200px;
+  }
+
+  &__order-status-box {
+    display: flex;
+    margin: 5px 0;
+    font-size: 18px;
+  }
+
+  &__order-status {
+    width: 200px;
+  }
+
+  &__order-status-form-box {
+    display: flex;
+  }
+
+  &__order-box {
+    width: 55%;
+    margin: 0 auto 40px;
+  }
+  
+  &__order-table1 {
+    margin-bottom: 30px;
+    
+    &--red {
+      color: #FF0000;
+    }
+
+    &--green {
+      color: #00CC00;
+    }
+
+    &--gray {
+      color: #999999;
+    }
+  }
+  
+  &__order-table2-user {
+    margin-bottom: 30px;
+  }
+  
+  &__order-table3 {
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 55px;
+      background: #00DD00;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #00DD00;
+    }
+    .EDITlink:hover {
+      color: #00DD00
+      ;
+      background: #ffffff;
+    }
+  }
+}

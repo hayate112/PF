@@ -1,22 +1,27 @@
-<h2>ジャンル編集</h2>
-
-<%= form_with(model:[:admins, @genre], local:true) do |f| %>
-  <div class='field'>
-    <%= f.label :genre_status, '対象' %>
-    <div>
-      <%= f.radio_button :genre_status, true %>
-      <%= f.label :genre_status, 'ブログ', value:true %>
+<div class="genre-box-new">
+  <div class="genre-box-new__inner">
+    <%= form_with(model:[:admins, @genre], local:true) do |f| %>
+    <h2>ジャンル編集</h2>
+    <div class="genre-box-new__status">
+      <%= f.label :genre_status, '対象' %>
+      <div class="genre-box-new__radio-button">
+        <div class="genre-box-new__radio-button1">
+          <%= f.radio_button :genre_status, true %>
+          <%= f.label :genre_status, 'ブログ', value:true %>
+        </div>
+        <div class="genre-box-new__radio-button2">
+          <%= f.radio_button :genre_status, false %>
+          <%= f.label :genre_status, '商品', value:false%>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= f.radio_button :genre_status, false %>
-      <%= f.label :genre_status, '商品', value:false%>
+    <div class="genre-box-new__name">
+      <%= f.label :name, 'ジャンル名' %>
+      <%= f.text_field :name %>
     </div>
+    <div class="genre-box-new__submit-edit">
+      <%= f.submit '変更を保存' %>
+    </div>
+    <% end %>
   </div>
-  <div class='field'>
-    <%= f.label :name, 'ジャンル名' %>
-    <%= f.text_field :name %>
-  </div>
-  <div class='field'>
-    <%= f.submit '変更を保存' %>
-  </div>
-<% end %>
+</div>

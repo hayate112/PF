@@ -1,17 +1,48 @@
-<h2>商品評価</h2>
-
-商品名<%= @item.name %><br>
-
-商品説明<%= @item.description %><br>
-
-ジャンル<%= @item.genre.name %><br>
-
-税抜価格（税込価格）<%= @item.price %><%= (@item.price * 1.08).round %><br>
-
-在庫<%= @item.count %><br>
-
-<% if @item.count == 0 %>
-  在庫がありません。
-<% end %>
-
-<%= render 'users/reviews/form', review: @review, item: @item %>
+<div class="item-show-box">
+  <div class="item-show-box__inner-item--user">
+    <h2 class="item-show-box__title-item">商品評価</h2>
+  </div>
+  <div class="item-show-box__item-box">
+    <div class="item-show-box__item-images">
+      <% @item.item_images.each do |image| %>
+        <div class="item-show-box__item-image">
+          <%= attachment_image_tag image, :image, :fill, 260, 170, fallback: "no_image.jpg", size: "260x170" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="item-show-box__item-other-box">
+      <div class="item-show-box__item-other-name-box">
+        <div class="item-show-box__item-other-name">商品名</div>
+        <div class="item-show-box__item-other-name--right"><%= @item.name %></div>
+      </div>
+      <div class="item-show-box__item-other-description-box">
+        <div class="item-show-box__item-other-description">商品説明</div>
+        <div class="item-show-box__item-other-description--right"><%= @item.description %></div>
+      </div>
+      <div class="item-show-box__item-other-genre-box">
+        <div class="item-show-box__item-other-genre">ジャンル</div>
+        <div class="item-show-box__item-other-genre--right"><%= @item.genre.name %></div>
+      </div>
+      <div class="item-show-box__item-other-price-box">
+        <div class="item-show-box__item-other-price">
+          税抜価格<br>
+        （税込価格）
+        </div>
+        <div class="item-show-box__item-other-price--right">
+          <%= @item.price %>円<br>
+          (<%= (@item.price * 1.08).round %>円)
+        </div>
+      </div>
+      <div class="item-show-box__item-other-count-box">
+        <div class="item-show-box__item-other-count">在庫</div>
+        <div class="item-show-box__item-other-count--right"><%= @item.count %>個</div>
+      </div>
+      <% if @item.count == 0 %>
+        在庫がありません。入荷をお待ちください。
+      <% end %>
+    </div>
+  </div>
+  <div class="item-show-box__item-review-box--form">
+    <%= render 'users/reviews/form', review: @review, item: @item %>
+  </div>
+</div>

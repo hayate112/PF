@@ -1,29 +1,61 @@
-<h2>商品詳細</h2>
+<div class="item-show-box">
+  <div class="item-show-box__inner-item">
+    <h2 class="item-show-box__title-item">商品詳細</h2>
+    <div class="item-show-box__edit-item"><%= link_to '商品情報を編集', edit_admins_item_path, class: 'EDITlink' %></div>
+  </div>
+  <div class="item-show-box__item-box">
+    <div class="item-show-box__item-images">
+      <% @item.item_images.each do |image| %>
+        <div class="item-show-box__item-image">
+          <%= attachment_image_tag image, :image, :fill, 260, 170, fallback: "no_image.jpg", size: "260x170" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="item-show-box__item-other-box">
+      <div class="item-show-box__item-other-name-box">
+        <div class="item-show-box__item-other-name">商品名</div>
+        <div class="item-show-box__item-other-name--right"><%= @item.name %></div>
+      </div>
+      <div class="item-show-box__item-other-description-box">
+        <div class="item-show-box__item-other-description">商品説明</div>
+        <div class="item-show-box__item-other-description--right"><%= @item.description %></div>
+      </div>
+      <div class="item-show-box__item-other-genre-box">
+        <div class="item-show-box__item-other-genre">ジャンル</div>
+        <div class="item-show-box__item-other-genre--right"><%= @item.genre.name %></div>
+      </div>
+      <div class="item-show-box__item-other-price-box">
+        <div class="item-show-box__item-other-price">
+          税抜価格<br>
+        （税込価格）
+        </div>
+        <div class="item-show-box__item-other-price--right">
+          <%= @item.price %>円<br>
+          (<%= (@item.price * 1.08).round %>円)
+        </div>
+      </div>
+      <div class="item-show-box__item-other-count-box">
+        <div class="item-show-box__item-other-count">在庫</div>
+        <div class="item-show-box__item-other-count--right"><%= @item.count %>個</div>
+      </div>
+      <div class="item-show-box__item-other-status-box">
+        <div class="item-show-box__item-other-status">販売ステータス</div>
+        <div class="item-show-box__item-other-status--right">
+          <% if @item.sale_status == true %>
+            <div class="item-show-box__item-other-status-box--green">在庫あり</div>
+          <% else %>
+            <div class="item-show-box__item-other-status-box--gray">在庫なし</div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="item-show-box__item-review-box">
+    <% if @item.reviews.present? %>
+      <%= render 'users/reviews/index', item: @item %>
+    <% end %>
+  </div>
+</div>
 
-商品名<%= @item.name %><br>
 
-商品説明<%= @item.description %><br>
 
-商品画像：
-<% @item.item_images.each do |image| %>
-  <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
-<% end %><br>
-
-ジャンル<%= @item.genre.name %><br>
-
-税抜価格（税込価格）<%= @item.price %><%= (@item.price * 1.08).round %><br>
-
-在庫<%= @item.count %><br>
-
-販売ステータス
-<% if @item.sale_status == true %>
-  在庫あり
-<% else %>
-  在庫なし
-<% end %><br>
-
-<% if @item.reviews.present? %>
-  <%= render 'users/reviews/index', item: @item %>
-<% end %>
-
-<%= link_to '編集する', edit_admins_item_path %>

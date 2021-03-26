@@ -25,6 +25,11 @@
       color: #DDDDDD;
     }
   }
+  
+  &__kaminari-users {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 
@@ -33,6 +38,8 @@ table {
 }
 
 table th {
+  text-align: left;
+  padding-left: 20px;
   width: 200px;
   height: 40px;
   border: solid 1px black;
@@ -40,7 +47,8 @@ table th {
 }
 
 table td {
-  text-align: center;
+  text-align: left;
+  padding-left: 20px;
   width: 200px;
   height: 30px;
   border: solid 1px black;

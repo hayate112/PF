@@ -1,24 +1,32 @@
-<h2>商品閲覧履歴</h2>
-
-<div>
-<% @historys.reverse_each do |history| %>
-  <%= link_to item_path(history.item.id) do %>
-   <div>
-     <%= history.item.name %>
-   </div>
-   <div>
-     <%= history.item.genre.name %>
-   </div>
-   <div>
-     <%= history.item.price %>
-   </div>
-   <div>
-     <% if history.item.sale_status == true %>
-       在庫あり
-     <% else %>
-       在庫なし
-     <% end %>
-   </div>
-  <% end %>
-<% end %>
+<div class="item-index-box">
+  <div class="item-index-box__inner-items--user">
+    <h2 class="item-index-box__title-items--user">商品閲覧履歴</h2>
+  </div>
+  <div class="item-index-box__items-box">
+    <% @historys.reverse_each do |history| %>
+      <div class="item-index-box__items">
+        <%= link_to item_path(history.item.id), class: 'EDITlink' do %>
+          <div class="item-index-box__items-image">
+            <% history.item.item_images.first(1).each do |image| %>
+              <%= attachment_image_tag image, :image, :fill, 240, 160, fallback: "no_image.jpg", size: "240x160" %>
+            <% end %>
+          </div>
+          <div class="item-index-box__items-name-genre-price-status">
+            <div class="item-index-box__items-name"><%= history.item.name %></div>
+            <div class="item-index-box__items-genre"><%= history.item.genre.name %></div>
+            <div class="item-index-box__items-price-status">
+              <div class="item-index-box__items-price"><%= history.item.price %></div>
+              <div class="item-index-box__items-status">
+                <% if history.item.sale_status == true %>
+                  <div class="item-index-box__items-status--green">在庫あり</div>
+                <% else %>
+                  <div class="item-index-box__items-status--gray">在庫なし</div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

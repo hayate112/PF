@@ -1,45 +1,53 @@
-<h2>商品一覧</h2>
-
-<%= link_to '閲覧履歴一覧', item_history_items_path %>
-
-<% @genres.each do |genre| %>
-  <tr>
-    <td>
-      <%= link_to genre.name, item_genre_search_items_path('search[value]': genre.id, 'search[how]': "match") %>
-    </td>
-  </tr>
-<% end %>
-
-<%= form_with model: @item, url: item_search_items_path, method: :get, local: true do |f| %>
-  <%= f.select :keyword, [ ['新着順', 'new'], ['古い順', 'old'], ['価格が高い順', 'highprice'], ['価格が低い順', 'lowprice'] ] %>
-  <%= f.submit '並べ替える' %>
-<% end %>
-
-<div>
-<% @items.each do |item| %>
-  <%= link_to item_path(item.id) do %>
-    <div>
-      <% item.item_images.first(1).each do |image| %>
-        <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
+<div class="item-index-box">
+  <div class="item-index-box__inner-items--user">
+    <h2 class="item-index-box__title-items--user">商品一覧</h2>
+    <div class="item-index-box__sort-items">
+      <%= form_with model: @item, url: item_search_items_path, method: :get, local: true do |f| %>
+        <%= f.select :keyword, [ ['新着順', 'new'], ['古い順', 'old'], ['価格が高い順', 'highprice'], ['価格が低い順', 'lowprice'] ] %>
+        <%= f.submit '並べ替える' %>
       <% end %>
     </div>
-   <div>
-     <%= item.name %>
-   </div>
-   <div>
-     <%= item.genre.name %>
-   </div>
-   <div>
-     <%= item.price %>
-   </div>
-   <div>
-     <% if item.sale_status == true %>
-       在庫あり
-     <% else %>
-       在庫なし
-     <% end %>
-   </div>
-  <% end %>
-<% end %>
+    <div class="item-index-box__new-items"><%= link_to '閲覧履歴', item_history_items_path, class: 'EDITlink' %></div>
+  </div>
+  <div class="item-index-box__genre-box">
+    <% @genres.each do |genre| %>
+      <div class="item-index-box__genre">
+        <tr>
+          <td>
+            <%= link_to genre.name, item_genre_search_items_path('search[value]': genre.id, 'search[how]': "match"), class: 'EDITlink' %>
+          </td>
+        </tr>
+      </div>
+    <% end %>
+  </div>
+  <div class="item-index-box__items-box">
+    <% @items.each do |item| %>
+      <div class="item-index-box__items">
+        <%= link_to item_path(item.id), class: 'EDITlink' do %>
+          <div class="item-index-box__items-image">
+            <% item.item_images.first(1).each do |image| %>
+              <%= attachment_image_tag image, :image, :fill, 240, 160, fallback: "no_image.jpg", size: "240x160" %>
+            <% end %>
+          </div>
+          <div class="item-index-box__items-name-genre-price-status">
+            <div class="item-index-box__items-name"><%= item.name %></div>
+            <div class="item-index-box__items-genre"><%= item.genre.name %></div>
+            <div class="item-index-box__items-price-status">
+              <div class="item-index-box__items-price"><%= item.price %></div>
+              <div class="item-index-box__items-status">
+                <% if item.sale_status == true %>
+                  <div class="item-index-box__items-status--green">在庫あり</div>
+                <% else %>
+                  <div class="item-index-box__items-status--gray">在庫なし</div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="item-index-box__kaminari-items">
+    <%= paginate @items %>
+  </div>
 </div>
-<%= paginate @items %>

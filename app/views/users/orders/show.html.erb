@@ -1,70 +1,82 @@
-<h2>注文履歴詳細</h2>
-
-<table>
-  <tr>
-    <th>注文日時</th>
-    <th>配送先</th>
-    <th>支払方法</th>
-    <th>ステータス</th>
-  </tr>
-  <tr>
-    <td><%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-    <td>
-      〒<%= @order.postal_code %><br>
-      <%= @order.prefectures %><%= @order.city %><br>
-      <%= @order.name %>
-    </td>
-    <td>
-      <% if @order.payment == 0 %>
-        クレジットカード
-      <% else %>
-        銀行振込
-      <% end %>
-    </td>
-    <td>
-        <% if @order.shipping_status == 0 %>
-          入金待ち
-        <% elsif @order.shipping_status == 1 %>
-          発送準備中
-        <% elsif @order.shipping_status == 2 %>
-          発送完了
-        <% else %>
-          お届け済み
+<div class="order-show-box">
+  <div class="order-show-box__title">
+    <h2>注文履歴詳細</h2>
+  </div>
+  <div class="order-show-box__table">
+    <div class="order-show-box__order-table1">
+      <table>
+        <tr>
+          <th>注文日時</th>
+          <th>配送先</th>
+          <th>支払方法</th>
+          <th>ステータス</th>
+        </tr>
+        <tr>
+          <td><%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+          <td>
+            〒<%= @order.postal_code %><br>
+            <%= @order.user.prefecture_name %><%= @order.city %><br>
+            <%= @order.name %>
+          </td>
+          <td>
+            <% if @order.payment == 0 %>
+              クレジットカード
+            <% else %>
+              銀行振込
+            <% end %>
+          </td>
+          <td>
+            <% if @order.shipping_status == 0 %>
+              <div class="order-show-box__order-table1--red">入金待ち</div>
+            <% elsif @order.shipping_status == 1 %>
+              <div class="order-show-box__order-table1--red">発送準備中</div>
+            <% elsif @order.shipping_status == 2 %>
+              <div class="order-show-box__order-table1--gray">発送完了</div>
+            <% else %>
+              <div class="order-show-box__order-table1--green">お届け済み</div>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="order-show-box__order-table2-user">
+      <table>
+        <tr>
+          <th>商品合計</th>
+          <th>配送料</th>
+          <th>ご請求金額</th>
+        </tr>
+        <tr>
+          <td><%= @order.amount - @order.shipping_fee %>円</td>
+          <td><%= @order.shipping_fee %>円</td>
+          <td><%= @order.amount %>円</td>
+        </tr>
+      </table>
+    </div>
+    <div class="order-show-box__order-table3">
+      <table>
+        <tr>
+          <th colspan="2">商品名</th>
+          <th>単価（税込）</th>
+          <th>個数</th>
+          <th>小計</th>
+          <th>商品評価</th>
+        </tr>
+        <% @order.order_items.each do |order_item| %>
+          <tr>
+            <td>
+              <% order_item.item.item_images.first(1).each do |image| %>
+                <%= attachment_image_tag image, :image, :fill, 60, 40, fallback: "no_image.jpg", size: "60x40" %>
+              <% end %>
+            </td>
+            <td><%= order_item.item.name %></td>
+            <td><%= (order_item.item.price * 1.08).round %>円</td>
+            <td><%= order_item.count %></td>
+            <td><%= ((order_item.item.price * order_item.count) * 1.08).round %>円</td>
+            <td><%= link_to '評価', review_item_path(order_item.item.id), class: 'EDITlink' %></td>
+          </tr>
         <% end %>
-      </td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <th>商品合計</th>
-    <th>配送料</th>
-    <th>ご請求金額</th>
-  </tr>
-  <tr>
-    <td><%= @order.amount - @order.shipping_fee %></td>
-    <td><%= @order.shipping_fee %></td>
-    <td><%= @order.amount %></td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <th>商品名</th>
-    <th></th>
-    <th>単価（税込）</th>
-    <th>個数</th>
-    <th>小計</th>
-    <th>商品評価</th>
-  </tr>
-  <% @order.order_items.each do |order_item| %>
-    <tr>
-      <td></td>
-      <td><%= order_item.item.name %></td>
-      <td><%= (order_item.item.price * 1.08).round %></td>
-      <td><%= order_item.count %></td>
-      <td><%= ((order_item.item.price * order_item.count) * 1.08).round %></td>
-      <td><%= link_to '評価', review_item_path(order_item.item.id) %></td>
-    </tr>
-  <% end %>
-</table>
+      </table>
+    </div>
+  </div>  
+</div>

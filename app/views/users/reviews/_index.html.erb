@@ -1,47 +1,65 @@
-総合評価<br>
-
-<div id="average-rate"></div>
-      <script>
-      $('#average-rate').raty({
-        size: 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        half: true,
-        readOnly: true,
-        score: <%= @average_review %>,
-      });
-      </script>
-
-<%= @average_review %>点<br>
-
-レビュー一覧<br>
-  <% @reviews.reverse_each do |review| %>
-    <%= review.user.nickname %>
-
-    <div id="star-rate-<%= review.id %>"></div>
-      <script>
-      $('#star-rate-<%= review.id %>').raty({
-        size: 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        half: true,
-        readOnly: true,
-        score: <%= review.rate %>,
-      });
-      </script>
-    <%= review.rate %>点<br>
-
-    <%= review.title %><br>
-    <%= review.body %>
-    <% review.review_images.each do |image| %>
-      <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
-    <% end %><br>
-    <% if review.user == current_user %>
-      <div>
-        <%= link_to "削除", item_review_path(review.item, review), method: :delete %>
+<div class="review-index-box">
+  <div class="review-index-box__inner">
+    <h3 class="review-index-box__total-rate">総合評価</h3>
+    <div class="review-index-box__total-rate-star-score">
+      <div id="average-rate"></div>
+        <script>
+        $('#average-rate').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: <%= @average_review %>,
+        });
+        </script>
+      <div class="review-index-box__total-rate-score">(<%= @average_review.round(2) %>点)</div>
+    </div>
+  </div>
+  <div class="review-index-box__index-box">
+    <h3 class="review-index-box__index-rate">レビュー一覧</h3>
+    <% @reviews.reverse_each do |review| %>
+      <div class="review-index-box__review-box">
+        <div class="review-index-box__review-user"><%= review.user.nickname %></div>
+        <div class="review-index-box__review-star-rate-title">
+          <div class="review-index-box__review-star">
+            <div id="star-rate-<%= review.id %>"></div>
+              <script>
+              $('#star-rate-<%= review.id %>').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%= review.rate %>,
+              });
+              </script>
+          </div>
+          <div class="review-index-box__review-title"><%= review.title %></div>
+        </div>
+        <div class="review-index-box__review-body"><%= review.body %></div>
+        <div class="review-index-box__review-images-delete">
+          <div class="review-index-box__review-images">
+            <% review.review_images.each do |image| %>
+              <div class="review-index-box__review-image">
+                <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="review-index-box__review-delete">
+            <% if review.user == current_user %>
+              <div>
+                <%= link_to "削除", item_review_path(review.item, review), method: :delete, class: 'EDITlink' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     <% end %>
-  <% end %>
-  <%= paginate @reviews %>
+  </div>
+  <div class="review-index-box__kaminari-reviews">
+    <%= paginate @reviews %>
+  </div>
+</div>

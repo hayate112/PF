@@ -1,34 +1,36 @@
-
-<%= form_with model: review, url: item_reviews_path(item.id), local: true do |f| %>
-  <div id="star">
-    <%= f.label :rate, '評価' %>
-    <%= f.hidden_field :rate, id: :review_star %>
+<div class="review-form-box">
+  <div class="review-form-box__inner">
+    <h3 class="review-form-box__title">レビュー投稿</h3>
   </div>
-
-  <script>
-    $('#star').raty({
-      size     : 36,
-      starOff  : '<%= asset_path('star-off.png') %>',
-      starOn   : '<%= asset_path('star-on.png') %>',
-      starHalf : '<%= asset_path('star-half.png') %>',
-      scoreName: 'review[rate]',
-      half: true,
-    });
-  </script>
-
-  <div>
-    <%= f.label :title, 'タイトル' %>
-    <%= f.text_field :title %>
+  <div class="review-form-box__form-box">
+    <%= form_with model: review, url: item_reviews_path(item.id), local: true do |f| %>
+      <div id="star" class="review-form-box__rate" >
+        <%= f.hidden_field :rate, id: :review_star %>
+      </div>
+      <script>
+        $('#star').raty({
+          size     : 36,
+          starOff  : '<%= asset_path('star-off.png') %>',
+          starOn   : '<%= asset_path('star-on.png') %>',
+          starHalf : '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[rate]',
+          half: true,
+        });
+      </script>
+      <div class="review-form-box__title">
+        <%= f.text_field :title, placeholder:'タイトル' %>
+      </div>
+      <div class="review-form-box__body">
+        <%= f.text_area :body, size: "99x5", placeholder:'レビュー内容を書き込んでください。' %>
+      </div>
+      <div class="review-form-box__image-submit">
+        <div class="review-form-box__image">
+          <%= f.attachment_field :review_images_images, multiple: true, id: "file" %>
+        </div>
+        <div class="review-form-box__submit">
+          <%= f.submit 'レビューを書く' %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= f.label :body, 'レビュー内容' %>
-    <%= f.text_area :body, rows: "5", placeholder:'レビュー内容を書き込んでください。' %>
-  </div>
-  <div>
-    <%= f.label :review_images_images, 'レビュー画像' %>
-    <%= f.attachment_field :review_images_images, multiple: true %>
-  </div>
-  <div>
-    <%= f.submit 'レビューを書く' %>
-  </div>
-<% end %>
+</div>

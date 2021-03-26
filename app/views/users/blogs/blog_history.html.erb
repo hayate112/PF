@@ -1,11 +1,25 @@
-<h2>ブログ閲覧履歴</h2>
-
-<% @historys.reverse_each do |history| %>
-  <%= link_to blog_path(history.blog.id) do %>
-    <div>
-      <div><%= history.blog.title %></div>
-      <div><%= history.blog.body %></div>
-      <div><%= history.blog.genre.name %></div>
-    </div>
-  <% end %>
-<% end %>
+<div class="index-box">
+  <div class="index-box__inner-blogs--user">
+    <h2 class="index-box__title-blogs--user">ブログ閲覧履歴</h2>
+  </div>
+  <div class="index-box__blogs-box">
+      <% @historys.reverse_each do |history| %>
+        <div class="index-box__blogs">
+          <%= link_to blog_path(history.blog.id), class: 'EDITlink' do %>
+            <div class="index-box__blogs-title"><%= history.blog.title %></div>
+            <div class="index-box__blogs-body-image-genre">
+              <div class="index-box__blogs-body"><%= history.blog.body %></div>
+              <div class="index-box__blogs-image-genre">
+                <div class="index-box__blogs-image">
+                  <% history.blog.blog_images.first(1).each do |image| %>
+                    <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
+                  <% end %>
+                </div>
+                <div class="index-box__blogs-genre">ジャンル: <%= history.blog.genre.name %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+</div>

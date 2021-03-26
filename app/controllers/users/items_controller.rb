@@ -7,7 +7,7 @@ class Users::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
-    @average_review = @item.reviews.average(:rate).round(2)
+    @average_review = @item.reviews.average(:rate)
     @reviews = @item.reviews.page(params[:page]).per(5)
     new_history = @item.item_historys.new
     new_history.user_id = current_user.id

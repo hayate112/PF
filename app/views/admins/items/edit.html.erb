@@ -1,48 +1,47 @@
-<h2>商品編集</h2>
-
-<%= form_with(model:[:admins, @item], local: true) do |f| %>
-  <div class="field">
-    <%= f.label :name, '商品名' %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description, '商品説明' %>
-    <%= f.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :item_images_images, '商品画像' %>
-    <%= f.attachment_field :item_images_images, multiple: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :genre_id, 'ジャンル' %>
-    <%= f.collection_select :genre_id, Genre.where(genre_status: false), :id, :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :price, '税抜価格' %>
-    <%= f.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= f.label :count, '在庫個数' %>
-    <%= f.text_field :count %>
-  </div>
-
-  <div class="field">
-    <%= f.label :sale_status, '販売ステータス' %>
-    <div>
-      <%= f.radio_button :sale_status, true, checked: true %>
-      <%= f.label :sale_status, '在庫あり', value:true %>
+<div class="item-new-box">
+  <div class="item-new-box__inner">
+    <%= form_with(model:[:admins, @item], local: true) do |f| %>
+    <h2>商品登録</h2>
+    <div class="item-new-box__name">
+      <%= f.label :name, '商品名' %><br>
+      <%= f.text_field :name %>
     </div>
-    <div>
-      <%= f.radio_button :sale_status, false %>
-      <%= f.label :sale_status, '在庫なし', value:false%>
+    <div class="item-new-box__description">
+      <%= f.label :description, '商品説明' %><br>
+      <%= f.text_area :description, size: "90x10" %>
     </div>
+    <div class="item-new-box__price">
+      <%= f.label :price, '税抜価格' %><br>
+      <%= f.text_field :price %>
+    </div>
+    <div class="item-new-box__count">
+      <%= f.label :count, '在庫個数' %><br>
+      <%= f.text_field :count %>
+    </div>
+    <div class="item-new-box__image">
+      <%= f.label :item_images_images, '商品画像' %><br>
+      <%= f.attachment_field :item_images_images, multiple: true %>
+    </div>
+    <div class="item-new-box__genre">
+      <%= f.label :genre_id, 'ジャンル' %><br>
+      <%= f.collection_select :genre_id, Genre.where(genre_status: false), :id, :name %>
+    </div>
+    <div class="item-new-box__status">
+      <%= f.label :sale_status, '販売ステータス' %><br>
+      <div class="item-new-box__status-box">
+        <div>
+          <%= f.radio_button :sale_status, true, checked: true %>
+          <%= f.label :sale_status, '在庫あり', value:true %>
+        </div>
+        <div>
+          <%= f.radio_button :sale_status, false %>
+          <%= f.label :sale_status, '在庫なし', value:false%>
+        </div>
+      </div>
+    </div>
+    <div class="item-new-box__submit-edit">
+      <%= f.submit '変更を保存' %>
+    </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.submit '編集・追加を保存' %>
-  </div>
-<% end %>
+</div>
