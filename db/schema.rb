@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 2021_03_19_084944) do
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "blog_id"
-    t.bigint "comment_like_id"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -161,7 +160,6 @@ ActiveRecord::Schema.define(version: 2021_03_19_084944) do
     t.integer "blog_id"
     t.bigint "comment_id"
     t.bigint "blog_like_id"
-    t.bigint "comment_like_id"
     t.string "family_name"
     t.string "name"
     t.string "family_name_kana"

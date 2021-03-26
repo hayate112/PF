@@ -35,7 +35,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :blog_id
       t.bigint :comment_id
       t.bigint :blog_like_id
-      t.bigint :comment_like_id
       t.string :family_name
       t.string :name
       t.string :family_name_kana

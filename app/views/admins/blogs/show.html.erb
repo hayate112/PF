@@ -1,20 +1,35 @@
-<h2>ブログ詳細</h2>
-
-タイトル：<%= @blog.title %><br>
-投稿内容：<%= @blog.body %><br>
-投稿画像：
-<% @blog.blog_images.each do |image| %>
-  <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
-<% end %><br>
-ジャンル：<%= @blog.genre.name %><br>
-投稿日時：<%= @blog.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-
-<h4>コメント一覧</h4>
-
-<div>
-  <%= render 'users/comments/index', comments: @comments %>
+<div class="show-box">
+  <div class="show-box__inner-blog">
+    <h2 class="show-box__title-blog">ブログ詳細</h2>
+    <div class="show-box__edit-blog"><%= link_to '投稿記事を編集', edit_admins_blog_path, class: 'EDITlink' %></div>
+  </div>
+  <div class="show-box__blog-box">
+    <div class="show-box__blog-title-genre-created">
+      <div class="show-box__blog-title"><%= @blog.title %></div>
+      <div class="show-box__blog-genre-created">
+        <div class="show-box__blog-genre">ジャンル：<%= @blog.genre.name %></div>
+        <div class="show-box__blog-created">投稿日時：<%= @blog.created_at.strftime('%Y/%m/%d %H:%M:%S') %></div>
+      </div>
+    </div>
+    <div class="show-box__blog-body-image">
+      <div class="show-box__blog-body"><%= @blog.body %></div>
+      <div class="show-box__blog-images">
+        <% @blog.blog_images.each do |image| %>
+          <div class="show-box__blog-image">
+            <%= attachment_image_tag image, :image, :fill, 260, 170, fallback: "no_image.jpg", size: "260x170" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="show-box__blog-comment-box">
+    <div class="show-box__blog-comment-index"><%= render 'users/comments/index', comments: @comments %></div>
+    <div class="show-box__blog-delete"><%= link_to '投稿記事を削除', admins_blog_path(@blog.id), method: :delete, class: 'EDITlink', data: { confirm: '本当に削除してもよろしいですか?' } %></div>
+  </div>
 </div>
 
 
-<%= link_to '投稿記事を編集', edit_admins_blog_path %>
-<%= link_to '投稿記事を削除', admins_blog_path(@blog.id), method: :delete, data: { confirm: '本当に削除してもよろしいですか?' } %>
+
+
+
+

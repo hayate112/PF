@@ -1,3 +1,37 @@
 // Place all the styles related to the users/Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comment-index {
+
+  &__inner{
+    margin-bottom: 25px;
+  }
+
+  &__comment-box {
+    margin: 10px auto;
+  }
+
+  &__created-delete {
+    display: flex;
+    font-size: 12px;
+  }
+
+  &__kaminari-comments {
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
+
+.comment-form {
+
+  &__inner{
+    margin-bottom: 25px;
+  }
+
+  &__submit {
+    margin-left: 140px;
+  }
+}

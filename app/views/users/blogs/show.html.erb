@@ -1,25 +1,31 @@
-<h2>ブログ詳細</h2>
-
-タイトル：<%= @blog.title %><br>
-投稿内容：<%= @blog.body %><br>
-投稿画像：
-<% @blog.blog_images.each do |image| %>
-  <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
-<% end %><br>
-ジャンル：<%= @blog.genre.name %><br>
-投稿日時：<%= @blog.created_at %><br>
-<div id="like_buttons_<%= @blog.id %>">
-  <%= render partial: 'users/blog_likes/like', locals: { blog: @blog } %>
-</div>
-
-<h4>コメント一覧</h4>
-
-<div>
-  <%= render 'users/comments/index', comments: @comments %>
-</div>
-
-<h4>コメント入力欄</h4>
-
-<div>
-  <%= render 'users/comments/form', comment: @comment, blog: @blog %>
+<div class="show-box">
+  <div class="show-box__inner-blog--user">
+    <h2 class="show-box__title-blog">ブログ詳細</h2>
+  </div>
+  <div class="show-box__blog-box">
+    <div class="show-box__blog-title-genre-created">
+      <div class="show-box__blog-title"><%= @blog.title %></div>
+      <div class="show-box__blog-genre-created">
+        <div class="show-box__blog-genre-like">
+          <div class="show-box__blog-genre">ジャンル：<%= @blog.genre.name %></div>
+          <div id="like_buttons_<%= @blog.id %>"><%= render partial: 'users/blog_likes/like', locals: { blog: @blog } %></div>
+        </div>
+        <div class="show-box__blog-created">投稿日時：<%= @blog.created_at.strftime('%Y/%m/%d %H:%M:%S') %></div>
+      </div>
+    </div>
+    <div class="show-box__blog-body-image">
+      <div class="show-box__blog-body"><%= @blog.body %></div>
+      <div class="show-box__blog-images">
+        <% @blog.blog_images.each do |image| %>
+          <div class="show-box__blog-image">
+            <%= attachment_image_tag image, :image, :fill, 260, 170, fallback: "no_image.jpg", size: "260x170" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="show-box__blog-comment-box">
+    <div class="show-box__blog-comment-index"><%= render 'users/comments/index', comments: @comments %></div>
+    <div class="show-box__blog-comment-form"><%= render 'users/comments/form', comment: @comment, blog: @blog %></div>
+  </div>
 </div>

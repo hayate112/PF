@@ -4,7 +4,7 @@
     <div class="index-box__new-blogs"><%= link_to '投稿する', new_admins_blog_path, class: 'EDITlink' %></div>
   </div>
   <div class="index-box__blogs-box">
-      <% @blogs.each do |blog| %>
+      <% @blogs.reverse_each do |blog| %>
         <div class="index-box__blogs">
           <%= link_to admins_blog_path(blog.id), class: 'EDITlink' do %>
             <div class="index-box__blogs-title"><%= blog.title %></div>
@@ -19,12 +19,12 @@
                 <div class="index-box__blogs-genre">ジャンル: <%= blog.genre.name %></div>
               </div>
             </div>
-            
+
           <% end %>
         </div>
       <% end %>
   </div>
-  <div class="index-box__blogs-kaminari">
+  <div class="index-box__kaminari-blogs">
     <%= paginate @blogs %>
   </div>
 </div>

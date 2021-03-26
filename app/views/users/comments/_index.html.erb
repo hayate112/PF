@@ -1,12 +1,30 @@
-<p>コメント件数：<%= comments.count %></p>
-  <% comments.each do |comment| %>
-    <%= comment.user.nickname %><br>
-    <%= comment.comment %><br>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><br>
-    <% if comment.user == current_user %>
-      <div>
-        <%= link_to "削除", blog_comment_path(comment.blog, comment), method: :delete %>
+<div class="comment-index">
+  <div class="comment-index__inner">
+    <h3 class="comment-index__title">コメント一覧</h3>
+    <p>コメント件数：<%= comments.count %></p>
+  </div>
+  <div class="comment-index__comments-box">
+    <% comments.each do |comment| %>
+      <div class="comment-index__comment-box">
+        <div class="comment-index__user"><%= comment.user.nickname %></div>
+        <div class="comment-index__comment"><%= comment.comment %></div>
+        <div class="comment-index__created-delete">
+          <div class="comment-index__created"><%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></div>
+          <div class="comment-index__delete">
+            <% if comment.user == current_user %>
+              <div>
+                <%= link_to "削除", blog_comment_path(comment.blog, comment), method: :delete %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     <% end %>
-  <% end %>
+  </div>
+  <div class="comment-index__kaminari-comments">
   <%= paginate comments %>
+</div>
+
+
+
+
