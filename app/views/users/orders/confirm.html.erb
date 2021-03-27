@@ -1,49 +1,69 @@
-<h2>注文情報確認</h2>
-
-<table>
-  <tr>
-    <th>商品名</th>
-    <th></th>
-    <th>単価（税込）</th>
-    <th>個数</th>
-    <th>小計</th>
-  </tr>
-  <% current_user.cart_items.each do |cart| %>
-    <tr>
-      <td></td>
-      <td><%= cart.item.name %></td>
-      <td><%= (cart.item.price * 1.08).round %></td>
-      <td><%= cart.count %></td>
-      <td><%= ((cart.item.price * cart.count) * 1.08).round %></td>
-    </tr>
-  <% end %>
-</table>
-
-<table>
-  <tr>
-    <th>商品合計</th>
-    <th>送料</th>
-    <th>ご請求金額</th>
-  </tr>
-  <tr>
-    <td><%= @order_item_sum %></td>
-    <td><%= @order.shipping_fee %></td>
-    <td><%= @order.amount %></td>
-  </tr>
-</table>
-
-<div>
-  支払方法
-  <% if @order.payment == 0 %>
-    クレジットカード
-  <% else %>
-    銀行振込
-  <% end %>
+<div class="order-confirm-box">
+  <div class="order-confirm-box__inner-order">
+    <h2 class="order-confirm-box__title-order">注文情報確認</h2>
+  </div>
+  <div class="order-confirm-box__confirm-box">
+    <div class="order-confirm-box__cart-table">
+      <table>
+        <tr>
+          <th colspan="2">商品名</th>
+          <th>単価（税込）</th>
+          <th>個数</th>
+          <th>小計</th>
+        </tr>
+        <% current_user.cart_items.each do |cart| %>
+          <tr>
+            <td>
+              <% cart.item.item_images.first(1).each do |image| %>
+                <%= attachment_image_tag image, :image, :fill, 60, 40, fallback: "no_image.jpg", size: "60x40" %>
+              <% end %>
+            </td>
+            <td><%= cart.item.name %></td>
+            <td><%= (cart.item.price * 1.08).round %>円</td>
+            <td><%= cart.count %></td>
+            <td><%= ((cart.item.price * cart.count) * 1.08).round %>円</td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="order-confirm-box__order-box">
+      <div class="order-confirm-box__information">
+        <div class="order-confirm-box__payment">
+          <div class="order-confirm-box__payment-label">支払方法</div>
+          <div class="order-confirm-box__payment-field">
+            <% if @order.payment == 0 %>
+              クレジットカード
+            <% else %>
+              銀行振込
+            <% end %>
+          </div>
+        </div>
+        <div class="order-confirm-box__send">
+          <div class="order-confirm-box__send-label">お届け先</div>
+          <div class="order-confirm-box__send-field">
+            〒<%= @order.postal_code %><br>
+            <%= @order.prefectures %><%= @order.city %><br>
+            <%= @order.name %>
+          </div>
+        </div>
+      </div>
+      <div class="order-confirm-box__order-table">
+        <table>
+          <tr>
+            <th>商品合計</th>
+            <th>送料</th>
+            <th>ご請求金額</th>
+          </tr>
+          <tr>
+            <td><%= @order_item_sum %>円</td>
+            <td><%= @order.shipping_fee %>円</td>
+            <td><%= @order.amount %>円</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="order-confirm-box__order-complete">
+    <%= link_to '注文を確定する', orders_path, method: :post, class: 'EDITlink' %>
+  </div>
 </div>
-<div>
-  お届け先<%= @order.postal_code %><br>
-  <%= @order.prefectures %><%= @order.city %><br>
-  <%= @order.name %>
-</div>
-
-<%= link_to '注文を確定する', orders_path, method: :post %>

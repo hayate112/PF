@@ -1,64 +1,64 @@
-<h2>注文情報入力</h2>
-
-<%= form_with url: confirm_orders_path, local: true do |f| %>
-  <div class="field">
-    <%= f.label :payment, '支払方法' %>
-    <div>
-      <%= f.radio_button :payment, 0, checked: true %>
-      <%= f.label :payment, 'クレジットカード', value:true %>
-    </div>
-    <div>
-      <%= f.radio_button :payment, 1 %>
-      <%= f.label :payment, '口座振込', value:false%>
-    </div>
+<div class="order-information-box">
+  <div class="order-information-box__inner-order">
+    <h2 class="order-information-box__title-order">注文情報入力</h2>
   </div>
-
-  <div class="field">
-    <%= f.label :send_to, '支払方法' %>
-    <div>
-      <%= f.radio_button :send_to, 0, checked: true %>
-      <%= f.label :send_to, 'ご自身の住所' %>
-      <div>
-        <%= current_user.postal_code %><%= current_user.prefectures %><%= current_user.city %><br>
-        <%= current_user.family_name %><%= current_user.name %>
-      </div>
-    </div>
-
-    <% if current_user.receivers.present? %>
-      <div>
-        <%= f.radio_button :send_to, 1 %>
-        <%= f.label :send_to, '登録した配送先住所から選択' %>
-        <div>
-          <%= f.select :receiver_id, @receivers %>
+  <div class="order-information-box__information-box">
+    <%= form_with url: confirm_orders_path, local: true do |f| %>
+      <div class="order-information-box__box-1">
+        <%= f.label :payment, '支払方法' %>
+        <div class="order-information-box__information-payment-0">
+          <%= f.radio_button :payment, 0, checked: true %>
+          <%= f.label :payment, 'クレジットカード', value:true %>
+        </div>
+        <div class="order-information-box__information-payment-1">
+          <%= f.radio_button :payment, 1 %>
+          <%= f.label :payment, '口座振込', value:false%>
         </div>
       </div>
-    <% else %>
-      <%= f.radio_button :send_to, 1, disabled: true %>
-      <%= f.label :send_to, '登録した配送先住所から選択' %><br>
-      登録されている配送先がありません
+      <div class="order-information-box__box-2">
+        <%= f.label :send_to, '支払方法' %>
+        <div class="order-information-box__information-send-0">
+          <%= f.radio_button :send_to, 0, checked: true %>
+          <%= f.label :send_to, 'ご自身の住所' %>
+          <div class="order-information-box__information-postal-code-address">
+            <div class="order-information-box__information-postal-code">〒<%= current_user.postal_code %></div>
+            <div class="order-information-box__information-address"><%= current_user.prefecture_name %><%= current_user.city %></div>
+          </div>
+          <div class="order-information-box__information-name"><%= current_user.family_name %><%= current_user.name %></div>
+        </div>
+        <div class="order-information-box__information-send-1">
+        <% if current_user.receivers.present? %>
+          <%= f.radio_button :send_to, 1 %>
+          <%= f.label :send_to, '登録した配送先住所から選択' %>
+          <div class="order-information-box__information-address"><%= f.select :receiver_id, @receivers %></div>
+        <% else %>
+          <%= f.radio_button :send_to, 1, disabled: true %>
+          <%= f.label :send_to, '登録した配送先住所から選択' %><br>
+          <div class="order-information-box__information-address">登録されている配送先がありません</div>
+        <% end %>
+        </div>
+        <div class="order-information-box__information-send-2">
+          <%= f.radio_button :send_to, 2 %>
+          <%= f.label :send_to, '新しいお届け先' %>
+          <div class="order-information-box__information-new-postal-code">
+            <div class="order-information-box__new-label"><%= f.label :postal_code, '郵便番号（ハイフンなし）' %></div>
+            <div class="order-information-box__new-field"><%= f.text_field :postal_code %></div>
+          </div>
+          <div class="order-information-box__information-new-prefectures">
+            <div class="order-information-box__new-label"><%= f.label :prefectures, '都道府県' %></div>
+            <div class="order-information-box__new-field"><%= f.text_field :prefectures %></div>
+          </div>
+          <div class="order-information-box__information-new-city">
+            <div class="order-information-box__new-label"><%= f.label :city, '都道府県以降の住所' %></div>
+            <div class="order-information-box__new-field"><%= f.text_field :city %></div>
+          </div>
+          <div class="order-information-box__information-new-name">
+            <div class="order-information-box__new-label"><%= f.label :name, '宛名' %></div>
+            <div class="order-information-box__new-field"><%= f.text_field :name %></div>
+          </div>
+        </div>
+      </div>
+      <div class="order-information-box__box-3"><%= f.submit '確認画面へ進む' %></div>
     <% end %>
-  
-      <div>
-      <%= f.radio_button :send_to, 2 %>
-      <%= f.label :send_to, '新しいお届け先' %>
-      <div>
-        <div>
-          <%= f.label :postal_code, '郵便番号（ハイフンなし）' %><br>
-          <%= f.label :prefectures, '都道府県' %><br>
-          <%= f.label :city, '住所' %><br>
-          <%= f.label :name, '宛名' %>
-        </div>
-        <div>
-          <%= f.text_field :postal_code %><br>
-          <%= f.text_field :prefectures %><br>
-          <%= f.text_field :city %><br>
-          <%= f.text_field :name %>
-        </div>
-      </div>
-    </div>
   </div>
-
-  <div>
-    <%= f.submit '確認画面へ進む' %>
-  </div>
-<% end %>
+</div>

@@ -15,7 +15,7 @@
           <td><%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
           <td>
             〒<%= @order.postal_code %><br>
-            <%= @order.user.prefecture_name %><%= @order.city %><br>
+            <%= @order.prefectures %><%= @order.city %><br>
             <%= @order.name %>
           </td>
           <td>

@@ -1,8 +1,14 @@
-<h2>注文完了</h2>
-
-<h3>ご注文ありがとうございました！</h3>
-商品が届きましたら、評価（レビュー）を書いていただけると嬉しいです。<br>
-（評価は下の注文履歴一覧から詳細画面を表示すると商品ごとの評価が行えます）<br>
-
-
-<%= link_to '注文履歴一覧へ移動する', orders_path %>
+<div class="order-complete-box">
+  <div class="order-complete-box__inner-order">
+    <h2 class="order-complete-box__title-order">ご注文ありがとうございました！</h2>
+  </div>
+  <div class="order-complete-box__complete-box">
+    <p>
+      商品が届きましたら、評価（レビュー）を書いていただけると嬉しいです。<br>
+      （評価は下の注文履歴一覧から詳細画面を表示すると商品ごとの評価が行えます）<br>
+    </p>
+  </div>
+  <div class="order-complete-box__index-link">
+    <%= link_to '注文履歴一覧へ移動する', orders_path, class: 'EDITlink' %>
+  </div>
+</div>

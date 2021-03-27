@@ -24,7 +24,7 @@ class Users::OrdersController < ApplicationController
     @order_item_sum = @order.amount - @order.shipping_fee
     if params[:send_to] == "0" # ご自身の住所
       @order.postal_code = current_user.postal_code
-      @order.prefectures = current_user.prefectures
+      @order.prefectures = current_user.prefecture_name
       @order.city = current_user.city
       @order.name = current_user.family_name + current_user.name
     elsif params[:send_to] == "1" # 登録した配送先住所

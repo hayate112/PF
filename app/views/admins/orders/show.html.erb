@@ -19,7 +19,7 @@
       <div class="order-show-box__order-reverse">配送先</div>
       <div class="order-show-box__order-reverse--right">
         〒<%= @order.postal_code %><br>
-        <%= @order.user.prefecture_name %><%= @order.city %><br>
+        <%= @order.prefectures %><%= @order.city %><br>
         <%= @order.name %>
       </div>
     </div>

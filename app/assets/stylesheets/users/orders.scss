@@ -1,3 +1,246 @@
 // Place all the styles related to the users/Orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.order-information-box {
+  width: 100%;
+  margin: 40px auto;
+
+  &__inner-order {
+    width: 70%;
+    margin: 0 auto 15px;
+    display: flex;
+    text-align: left;
+  }
+
+  &__information-box {
+    width: 65%;
+    margin: 0 auto 15px;
+  }
+
+  &__box-1 {
+    font-size: 20px;
+  }
+
+  &__information-payment-0 {
+    margin: 5px 0 5px 20px;
+    font-size: 16px;
+  }
+
+  &__information-payment-1 {
+    margin: 5px 0 5px 20px;
+    font-size: 16px;
+  }
+
+  &__box-2 {
+    font-size: 20px;
+    margin-top: 30px;
+  }
+
+  &__information-send-0 {
+    margin: 5px 0 5px 20px;
+    font-size: 16px;
+  }
+
+  &__information-postal-code-address {
+    margin-left: 30px;
+    display: flex;
+  }
+
+  &__information-postal-code {
+    margin: 5px 10px 0 0;
+  }
+
+  &__information-address {
+    margin: 5px 10px 0 0;
+  }
+
+  &__information-name {
+    margin: 0 0 5px 30px;
+  }
+
+  &__information-send-1 {
+    margin: 5px 0 5px 20px;
+    font-size: 16px;
+  }
+
+  &__information-address {
+    margin: 5px 0 5px 30px;
+  }
+
+  &__information-send-2 {
+    margin: 5px 0 5px 20px;
+    font-size: 16px;
+  }
+
+  &__information-new-postal-code {
+    margin: 5px 0 5px 30px;
+    display: flex;
+  }
+
+  &__information-new-prefectures {
+    margin: 5px 0 5px 30px;
+    display: flex;
+  }
+
+  &__information-new-city {
+    margin: 5px 0 5px 30px;
+    display: flex;
+  }
+
+  &__information-new-name {
+    margin: 5px 0 5px 30px;
+    display: flex;
+  }
+
+  &__new-label {
+    width: 200px;
+  }
+
+  &__new-field input[type="text"] {
+    border-style: none;
+    box-sizing: border-box;
+    width: 400px;
+    height: 25px;
+    border: 1px solid #a6a6a6;
+    box-shadow: 0 1px 0 rgba(0,0,0,.07) inset;
+    border-radius: 3px;
+    padding: 0 7px;
+  }
+
+  &__box-3 {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+  }
+
+  &__box-3 input[type="submit"] {
+    display: inline-block;
+    border-radius: 7%;
+    font-size: 13pt;
+    text-align: center;
+    cursor: pointer;
+    padding: 7px 42px;
+    background: #007fff;
+    color: #ffffff;
+    line-height: 1em;
+    transition: .3s;
+    border: 2px solid #007fff;
+  }
+
+  &__box-3 input[type="submit"]:hover {
+    color: #007fff;
+    background: #ffffff;
+  }
+}
+
+
+.order-confirm-box {
+  width: 100%;
+  margin: 40px auto;
+
+  &__inner-order {
+    width: 70%;
+    margin: 0 auto 15px;
+    display: flex;
+    text-align: left;
+  }
+
+  &__confirm-box {
+    width: 70%;
+    margin: 0 auto 15px;
+  }
+
+  &__order-box {
+    width: 99%;
+    margin: 30px 0 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__payment {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  &__payment-field {
+    margin-left: 20px;
+  }
+
+  &__send {
+    display: flex;
+  }
+
+  &__send-field {
+    margin-left: 20px;
+  }
+
+  &__order-complete {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 40px;
+      background: #00DD00;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #00DD00;
+    }
+    .EDITlink:hover {
+      color: #00DD00;
+      background: #ffffff;
+    }
+  }
+}
+
+.order-complete-box {
+  width: 100%;
+  margin: 130px auto;
+
+  &__inner-order {
+    width: 70%;
+    margin: 30px auto 15px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__complete-box {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  &__index-link {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 55px;
+      background: #a6a6a6;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #a6a6a6;
+    }
+    .EDITlink:hover {
+      color: #a6a6a6;
+      background: #ffffff;
+    }
+  }
+}
