@@ -1,3 +1,143 @@
 // Place all the styles related to the users/CartItems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.cart-index-box {
+  width: 100%;
+  margin: 60px 0;
+
+  &__inner {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  &__title {
+    margin-right: 450px;
+  }
+
+  &__delete-all {
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 20px;
+      background: #a6a6a6;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #a6a6a6;
+    }
+    .EDITlink:hover {
+      color: #a6a6a6;
+      background: #ffffff;
+    }
+  }
+
+  &__cart-box {
+    margin: 30px 0;
+  }
+  
+  &__cart-empty {
+    margin: 0 auto;
+    text-align: center;
+    
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 40px;
+      background: #007fff;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #007fff;
+    }
+    .EDITlink:hover {
+      color: #007fff;
+      background: #ffffff;
+    }
+  }
+
+  &__item-table {
+    display: flex;
+    justify-content: center;
+    
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 4px 40px;
+      background: #a6a6a6;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #a6a6a6;
+    }
+    .EDITlink:hover {
+      color: #a6a6a6;
+      background: #ffffff;
+    }
+  }
+
+  &__cart-box2 {
+    width: 83%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 40px;
+      background: #007fff;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #007fff;
+    }
+    .EDITlink:hover {
+      color: #007fff;
+      background: #ffffff;
+    }
+  }
+
+  &__order {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    
+    .EDITlink {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 7%;
+      font-size: 13pt;
+      text-align: center;
+      cursor: pointer;
+      padding: 7px 40px;
+      background: #00DD00;
+      color: #ffffff;
+      line-height: 1em;
+      transition: .3s;
+      border: 2px solid #00DD00;
+    }
+    .EDITlink:hover {
+      color: #00DD00;
+      background: #ffffff;
+    }
+  }
+}
