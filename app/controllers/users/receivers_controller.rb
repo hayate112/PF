@@ -1,14 +1,19 @@
 class Users::ReceiversController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @receiver = Receiver.new
-    @receivers = Receiver.all
+    @receivers = current_user.receivers
   end
 
   def create
     @receiver = Receiver.new(receiver_params)
-    @receiver.user_id = current_user.id
+    @receivers = current_user.receivers
     if @receiver.save
       redirect_to receivers_path
+    else
+      flash[:notice] = "必要な項目が未入力です"
+      render :index
     end
   end
 
@@ -20,6 +25,9 @@ class Users::ReceiversController < ApplicationController
     @receiver = Receiver.find(params[:id])
     if @receiver.update(receiver_params)
       redirect_to receivers_path
+    else
+      flash[:notice] = "必要な項目が未入力です"
+      render :edit
     end
   end
 

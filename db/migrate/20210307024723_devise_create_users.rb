@@ -35,16 +35,16 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :blog_id
       t.bigint :comment_id
       t.bigint :blog_like_id
-      t.string :family_name
-      t.string :name
-      t.string :family_name_kana
-      t.string :name_kana
-      t.string :nickname
-      t.integer :postal_code
-      t.integer :prefectures
-      t.string :city
-      t.string :phone_number
-      t.boolean :is_deleted, default: false
+      t.string :family_name, null: false
+      t.string :name, null: false
+      t.string :family_name_kana, null: false
+      t.string :name_kana, null: false
+      t.string :nickname, null: false
+      t.integer :postal_code, null: false
+      t.integer :prefectures, null: false
+      t.string :city, null: false
+      t.string :phone_number, null: false
+      t.boolean :is_deleted, default: false, null: false
 
       t.timestamps null: false
     end

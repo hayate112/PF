@@ -7,7 +7,9 @@
         <%= f.submit '並べ替える' %>
       <% end %>
     </div>
-    <div class="item-index-box__new-items"><%= link_to '閲覧履歴', item_history_items_path, class: 'EDITlink' %></div>
+    <% if user_signed_in? %>
+      <div class="item-index-box__new-items"><%= link_to '閲覧履歴', item_history_items_path, class: 'EDITlink' %></div>
+    <% end %>  
   </div>
   <div class="item-index-box__genre-box">
     <% @genres.each do |genre| %>

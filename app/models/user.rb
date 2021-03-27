@@ -9,8 +9,11 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :family_name_kana, presence: true
   validates :name_kana, presence: true
+  validates :nickname, presence: true
   validates :phone_number, presence: true
   validates :postal_code, presence: true
+  validates :prefectures, presence: true
+  validates :city, presence: true
 
   has_many :comments, dependent: :destroy
   has_many :blog_likes, dependent: :destroy
@@ -36,7 +39,4 @@ class User < ApplicationRecord
   def prefecture_name=(prefecture_name)
     self.prefectures = JpPrefecture::Prefecture.find(name: prefectures).code
   end
-
-
-
 end

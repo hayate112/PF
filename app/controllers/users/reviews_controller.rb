@@ -1,10 +1,15 @@
 class Users::ReviewsController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
-    item = Item.find(params[:item_id])
-    review = current_user.reviews.new(review_params)
-    review.item_id = item.id
-    if review.save
+    @item = Item.find(params[:item_id])
+    @review = current_user.reviews.new(review_params)
+    @review.item_id = @item.id
+    if @review.save
       redirect_to item_path(item.id)
+    else
+      flash[:notice] = "必要な項目が未入力です"
+      render 'users/items/review'
     end
   end
 

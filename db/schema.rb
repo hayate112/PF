@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_084944) do
 
   create_table "blogs", force: :cascade do |t|
     t.integer "genre_id"
-    t.string "title"
-    t.text "body"
+    t.string "title", null: false
+    t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_084944) do
   create_table "cart_items", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "item_id"
-    t.integer "count"
+    t.integer "count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,14 +64,14 @@ ActiveRecord::Schema.define(version: 2021_03_19_084944) do
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "blog_id"
-    t.text "comment"
+    t.text "comment", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
-    t.boolean "genre_status"
+    t.string "name", null: false
+    t.boolean "genre_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -92,11 +92,11 @@ ActiveRecord::Schema.define(version: 2021_03_19_084944) do
 
   create_table "items", force: :cascade do |t|
     t.integer "genre_id"
-    t.string "name"
-    t.text "description"
-    t.integer "price"
-    t.integer "count"
-    t.boolean "sale_status"
+    t.string "name", null: false
+    t.text "description", null: false
+    t.integer "price", null: false
+    t.integer "count", null: false
+    t.boolean "sale_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -112,24 +112,24 @@ ActiveRecord::Schema.define(version: 2021_03_19_084944) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "amount"
-    t.integer "shipping_fee"
-    t.integer "payment"
-    t.string "postal_code"
-    t.string "prefectures"
-    t.string "city"
-    t.string "name"
-    t.integer "shipping_status", default: 0
+    t.integer "amount", null: false
+    t.integer "shipping_fee", null: false
+    t.integer "payment", null: false
+    t.string "postal_code", null: false
+    t.string "prefectures", null: false
+    t.string "city", null: false
+    t.string "name", null: false
+    t.integer "shipping_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "receivers", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "postal_code"
-    t.string "prefectures"
-    t.string "city"
-    t.string "name"
+    t.string "postal_code", null: false
+    t.string "prefectures", null: false
+    t.string "city", null: false
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -144,8 +144,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_084944) do
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "item_id"
-    t.string "title"
-    t.text "body"
+    t.string "title", null: false
+    t.text "body", null: false
     t.float "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -160,16 +160,16 @@ ActiveRecord::Schema.define(version: 2021_03_19_084944) do
     t.integer "blog_id"
     t.bigint "comment_id"
     t.bigint "blog_like_id"
-    t.string "family_name"
-    t.string "name"
-    t.string "family_name_kana"
-    t.string "name_kana"
-    t.string "nickname"
-    t.integer "postal_code"
-    t.integer "prefectures"
-    t.string "city"
-    t.string "phone_number"
-    t.boolean "is_deleted", default: false
+    t.string "family_name", null: false
+    t.string "name", null: false
+    t.string "family_name_kana", null: false
+    t.string "name_kana", null: false
+    t.string "nickname", null: false
+    t.integer "postal_code", null: false
+    t.integer "prefectures", null: false
+    t.string "city", null: false
+    t.string "phone_number", null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

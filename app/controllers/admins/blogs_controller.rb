@@ -1,4 +1,6 @@
 class Admins::BlogsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def new
     @blog = Blog.new
     @blog.blog_images.build
@@ -17,6 +19,9 @@ class Admins::BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     if @blog.save
       redirect_to admins_blogs_path
+    else
+      flash[:notice] = "必要な項目が未入力です"
+      render :new
     end
   end
 
@@ -28,6 +33,9 @@ class Admins::BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     if @blog.update(blog_params)
       redirect_to admins_blog_path(@blog.id)
+    else
+      flash[:notice] = "必要な項目が未入力です"
+      render :edit
     end
   end
 

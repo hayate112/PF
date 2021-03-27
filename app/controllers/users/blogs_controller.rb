@@ -8,18 +8,20 @@ class Users::BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @comment = Comment.new
     @comments = @blog.comments.page(params[:page]).per(5)
-    new_history = @blog.blog_historys.new
-    new_history.user_id = current_user.id
-    if current_user.blog_historys.exists?(blog_id: "#{params[:id]}")
-      old_history = current_user.blog_historys.find_by(blog_id: "#{params[:id]}")
-      old_history.destroy
-    end
-    new_history.save
-
-    histories_stock_limit = 10
-    histories = current_user.blog_historys.all
-    if histories.count > histories_stock_limit
-      histories[0].destroy
+    if user_signed_in? 
+      new_history = @blog.blog_historys.new
+      new_history.user_id = current_user.id
+      if current_user.blog_historys.exists?(blog_id: "#{params[:id]}")
+        old_history = current_user.blog_historys.find_by(blog_id: "#{params[:id]}")
+        old_history.destroy
+      end
+      new_history.save
+  
+      histories_stock_limit = 10
+      histories = current_user.blog_historys.all
+      if histories.count > histories_stock_limit
+        histories[0].destroy
+      end
     end
   end
 

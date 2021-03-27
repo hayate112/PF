@@ -8,7 +8,9 @@
       <div class="show-box__blog-genre-created">
         <div class="show-box__blog-genre-like">
           <div class="show-box__blog-genre">ジャンル：<%= @blog.genre.name %></div>
-          <div id="like_buttons_<%= @blog.id %>"><%= render partial: 'users/blog_likes/like', locals: { blog: @blog } %></div>
+          <% if user_signed_in? %>
+            <div id="like_buttons_<%= @blog.id %>"><%= render partial: 'users/blog_likes/like', locals: { blog: @blog } %></div>
+          <% end %>
         </div>
         <div class="show-box__blog-created">投稿日時：<%= @blog.created_at.strftime('%Y/%m/%d %H:%M:%S') %></div>
       </div>

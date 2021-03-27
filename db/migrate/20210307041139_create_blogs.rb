@@ -3,8 +3,8 @@ class CreateBlogs < ActiveRecord::Migration[5.2]
     create_table :blogs do |t|
       t.integer :genre_id
 
-      t.string :title
-      t.text :body
+      t.string :title, null: false
+      t.text :body, null: false
 
       t.timestamps
     end

@@ -1,4 +1,6 @@
 class Users::OrdersController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @orders = Order.where(user_id: current_user).page(params[:page]).per(10)
   end
@@ -48,6 +50,7 @@ class Users::OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.new(session[:order])
+    @receivers = current_user.receivers.map {|receiver| ["#{receiver.postal_code} #{receiver.prefectures} #{receiver.city} #{receiver.name}", receiver.id]}
     session[:order] = nil
     if @order.save
       current_user.cart_items.each do |cart_item|
@@ -67,6 +70,7 @@ class Users::OrdersController < ApplicationController
       current_user.cart_items.destroy_all
       redirect_to complete_orders_path
     else
+      flash[:notice] = "注文を確定できませんでした"
       render :information
     end
   end

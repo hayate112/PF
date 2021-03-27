@@ -9,18 +9,20 @@ class Users::ItemsController < ApplicationController
     @cart_item = CartItem.new
     @average_review = @item.reviews.average(:rate)
     @reviews = @item.reviews.page(params[:page]).per(5)
-    new_history = @item.item_historys.new
-    new_history.user_id = current_user.id
-    if current_user.item_historys.exists?(item_id: "#{params[:id]}")
-      old_history = current_user.item_historys.find_by(item_id: "#{params[:id]}")
-      old_history.destroy
-    end
-    new_history.save
-
-    histories_stock_limit = 12
-    histories = current_user.item_historys.all
-    if histories.count > histories_stock_limit
-      histories[0].destroy
+    if user_signed_in? 
+      new_history = @item.item_historys.new
+      new_history.user_id = current_user.id
+      if current_user.item_historys.exists?(item_id: "#{params[:id]}")
+        old_history = current_user.item_historys.find_by(item_id: "#{params[:id]}")
+        old_history.destroy
+      end
+      new_history.save
+  
+      histories_stock_limit = 12
+      histories = current_user.item_historys.all
+      if histories.count > histories_stock_limit
+        histories[0].destroy
+      end
     end
   end
 

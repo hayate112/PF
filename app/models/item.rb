@@ -8,6 +8,12 @@ class Item < ApplicationRecord
   has_many :item_historys, dependent: :destroy
 
   accepts_attachments_for :item_images, attachment: :image
+  
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :price, presence: true
+  validates :count, presence: true
+  validates :sale_status, inclusion: { in: [true, false] }
 
   def self.sort(selection)
     case selection
