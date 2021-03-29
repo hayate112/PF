@@ -6,7 +6,7 @@ class Users::ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     @review.item_id = @item.id
     if @review.save
-      redirect_to item_path(item.id)
+      redirect_to item_path(@item.id)
     else
       flash[:notice] = "必要な項目が未入力です"
       render 'users/items/review'

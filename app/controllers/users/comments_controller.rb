@@ -5,7 +5,7 @@ class Users::CommentsController < ApplicationController
     @comment.blog_id = @blog.id
     @comments = @blog.comments.page(params[:page]).per(5)
     if @comment.save
-      redirect_to blog_path(blog)
+      redirect_to blog_path(@blog)
     else
       flash[:notice] = "コメントを入力してください"
       render 'users/blogs/show'
