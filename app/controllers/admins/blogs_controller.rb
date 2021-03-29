@@ -1,6 +1,6 @@
 class Admins::BlogsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def new
     @blog = Blog.new
     @blog.blog_images.build

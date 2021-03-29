@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   def active_for_authentication?
-    super && (self.is_deleted == false)
+    super && (is_deleted == false)
   end
 
   include JpPrefecture

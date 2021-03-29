@@ -1,6 +1,6 @@
 class Admins::GenresController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @genre = Genre.new
     @genre_blog = Genre.where(genre_status: true)

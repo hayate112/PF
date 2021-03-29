@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   belongs_to :user
 
   has_many :order_items, dependent: :destroy
-  
+
   validates :amount, presence: true
   validates :shipping_fee, presence: true
   validates :payment, presence: true

@@ -1,6 +1,6 @@
 class Admins::ItemsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def new
     @item = Item.new
     @item.item_images.build
@@ -45,5 +45,4 @@ class Admins::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :description, :genre_id, :price, :count, :sale_status, item_images_images: [])
   end
-
 end

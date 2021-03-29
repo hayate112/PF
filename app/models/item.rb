@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   has_many :item_historys, dependent: :destroy
 
   accepts_attachments_for :item_images, attachment: :image
-  
+
   validates :name, presence: true
   validates :description, presence: true
   validates :price, presence: true
@@ -18,13 +18,13 @@ class Item < ApplicationRecord
   def self.sort(selection)
     case selection
     when 'new'
-      return all.order(created_at: :DESC)
+      all.order(created_at: :DESC)
     when 'old'
-      return all.order(created_at: :ASC)
+      all.order(created_at: :ASC)
     when 'highprice'
-      return all.order(price: :DESC)
+      all.order(price: :DESC)
     when 'lowprice'
-      return all.order(price: :ASC)
+      all.order(price: :ASC)
     end
   end
 end
