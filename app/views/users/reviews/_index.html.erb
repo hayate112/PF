@@ -44,7 +44,7 @@
           <div class="review-index-box__review-images">
             <% review.review_images.each do |image| %>
               <div class="review-index-box__review-image">
-                <%= attachment_image_tag image, :image, :fill, 120, 80, fallback: "no_image.jpg", size: "120x80" %>
+                <%= attachment_image_tag image, :image, size: "120x80", fallback: "no_image.jpg", size: "120x80" %>
               </div>
             <% end %>
           </div>

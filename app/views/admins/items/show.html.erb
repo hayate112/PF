@@ -7,7 +7,7 @@
     <div class="item-show-box__item-images">
       <% @item.item_images.each do |image| %>
         <div class="item-show-box__item-image">
-          <%= attachment_image_tag image, :image, :fill, 260, 170, fallback: "no_image.jpg", size: "260x170" %>
+          <%= attachment_image_tag image, :image, size: "260x170", fallback: "no_image.jpg", size: "260x170" %>
         </div>
       <% end %>
     </div>

@@ -6,5 +6,6 @@ aws = {
   region: "ap-northeast-1",
   bucket: "cookie-image",
 }
+
 Refile.cache = Refile::S3.new(prefix: "cache", **aws)
 Refile.store = Refile::S3.new(prefix: "store", **aws)

@@ -28,7 +28,7 @@
         <%= link_to item_path(item.id), class: 'EDITlink' do %>
           <div class="item-index-box__items-image">
             <% item.item_images.first(1).each do |image| %>
-              <%= attachment_image_tag image, :image, :fill, 240, 160, fallback: "no_image.jpg", size: "240x160" %>
+              <%= attachment_image_tag image, :image, size: "240x160", fallback: "no_image.jpg", size: "240x160" %>
             <% end %>
           </div>
           <div class="item-index-box__items-name-genre-price-status">

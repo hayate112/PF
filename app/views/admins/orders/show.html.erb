@@ -61,7 +61,7 @@
           <tr>
             <td>
               <% order_item.item.item_images.first(1).each do |image| %>
-                <%= attachment_image_tag image, :image, :fill, 60, 40, fallback: "no_image.jpg", size: "60x40" %>
+                <%= attachment_image_tag image, :image, size: "60x40", fallback: "no_image.jpg", size: "60x40" %>
               <% end %>
             </td>
             <td><%= order_item.item.name %></td>
