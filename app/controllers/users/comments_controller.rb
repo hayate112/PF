@@ -2,6 +2,7 @@ class Users::CommentsController < ApplicationController
   def create
     @blog = Blog.find(params[:blog_id])
     @comment = current_user.comments.new(comment_params)
+    @comment.score = Language.get_data(comment_params[:comment])  # AI = Natural Language API
     @comment.blog_id = @blog.id
     @comments = @blog.comments.page(params[:page]).per(5)
     if @comment.save

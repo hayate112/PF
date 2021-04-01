@@ -8,6 +8,7 @@
       <div class="comment-index__comment-box">
         <div class="comment-index__user"><%= comment.user.nickname %></div>
         <div class="comment-index__comment"><%= comment.comment %></div>
+        <div><%= comment.score %></div>
         <div class="comment-index__created-delete">
           <div class="comment-index__created"><%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></div>
           <div class="comment-index__delete">
