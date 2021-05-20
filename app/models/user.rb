@@ -25,9 +25,11 @@ class User < ApplicationRecord
   has_many :item_historys, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
+
   def active_for_authentication?
     super && (is_deleted == false)
   end
+
 
   include JpPrefecture
   jp_prefecture :prefectures
@@ -37,6 +39,7 @@ class User < ApplicationRecord
   end
 
   def prefecture_name=(prefecture_name)
-    self.prefectures = JpPrefecture::Prefecture.find(name: prefectures).code
+    self.prefectures = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
+  
 end

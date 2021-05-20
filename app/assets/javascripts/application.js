@@ -16,3 +16,16 @@
 //= require jquery
 //= require_tree .
 
+$(function () {
+  $(document).on('turbolinks:load', () => {
+    $('#user_postal_code').jpostal({
+      postcode: [
+        '#user_postal_code'
+      ],
+      address: {
+        "#user_prefectures": "%3",
+        "#user_city": "%4%5%6%7",
+      }
+    });
+  });
+});
