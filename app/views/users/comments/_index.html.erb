@@ -5,6 +5,7 @@
   </div>
   <div class="comment-index__comments-box">
     <% comments.each do |comment| %>
+      <% if comment.score >= -0.7 %>
       <div class="comment-index__comment-box">
         <div class="comment-index__user"><%= comment.user.nickname %></div>
         <div class="comment-index__comment"><%= comment.comment %></div>
@@ -20,6 +21,7 @@
           </div>
         </div>
       </div>
+      <% end %>
     <% end %>
   </div>
   <div class="comment-index__kaminari-comments">
